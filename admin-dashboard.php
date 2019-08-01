@@ -9,7 +9,7 @@
 
 
 	$query = "Select * from brand order by brand_name";
-	$result = $crud->getData($query);
+	$brand_name_result = $crud->getData($query);
  
 
 ?>
@@ -27,67 +27,80 @@
 <body>
 	 
 	 <div class="dashboard">
-	 	<div class="row">
-
-	 	 
-	 			 <div class="col-2 sidebar">
-		 			<div class="logo text-center">
+		
+		<!--Navbar-->
+		<div class="row head fixed-top">
+			<div class="col ">
+					<div class="logo">
 		 				<a href="index.php">
-		 				<img src="images/logo.png" alt="" style="width: 60%;">
+		 				<img src="images/logo.png" alt="" style="width: 230px;">
 		 				</a>
 		 			</div>
-	 			<div id="main-menu" class="list-group">
+
+	 				<div class="logout float-right">
+	 					<a class="btn btn-sm btn-warning" href="admin-logout.php"><i class="fas fa-sign-out-alt"></i>Log out</a>
+	 				</div>
+	 			 
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+	 	<!--Content Manage-->
+	 	<div class="row content">
+	 			 <div class="col-2">
+	 			 	<div class="sidebar">
+
+		 			 <div id="main-menu" class="list-group pt">
 	 				 
 	 				 <a href="" class="list-group-item"><i class="fas fa-user-shield"></i>Admin</a> 
-	 		 		 <a href="" class="list-group-item"><i class="fas fa-users"></i>Customer</a> 
+	 		 		 <a href="#customer-list" class="list-group-item"><i class="fas fa-users"></i>Customer</a> 
 	 				 <a href="#sub-menu" class="list-group-item" data-toggle="collapse" data-parent="#main-menu"><i class="fab fa-product-hunt"></i>Product</a>
 
 	 						<div class="collapse list-group-level1" id="sub-menu">
-	 							 <a href="" id="add_product_btn" class="list-group-item" data-parent="#sub-menu"><i class="fas fa-arrow-alt-circle-down"></i>Add Product</a> 	
-	 							 <a href="" id="product_list_btn" class="list-group-item" data-parent="#sub-menu"><i class="fas fa-list"></i>Product List</a> 
+	 							 <a href="#" id="add_product_btn" class="list-group-item" data-parent="#sub-menu"><i class="fas fa-arrow-alt-circle-down"></i>Add Product</a> 	
+	 							 <a href="#product_list" id="product_list_btn" class="list-group-item" data-parent="#sub-menu"><i class="fas fa-list"></i>Product List</a> 
 	 						</div>
 						 
 	 					 
 	 					 <a href=""class="list-group-item"><i class="fas fa-cart-arrow-down"></i>Order</a> 	
 	 				 <a href=""class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a> 
-	 				 
+	 				 </div>
 	 			</div>
- 
-
-
 	 		</div> 
 
-	 		<!--Content Manage-->
+	 		
 	 		 
 	 		 <div class="col-10 content">
 
-	 			<div class="head">
-	 				<div class="logout float-right">
-	 					<a class="btn btn-sm btn-warning" href="admin-logout.php"><i class="fas fa-sign-out-alt"></i>Log out</a>
-	 				</div>
-	 			</div>
-
 	 			<div class="clearfix"></div>
-	 			<div class="content_manage pt-3">
+	 			<div class="content_manage">
 	 				 
+				<!--Welcome Message-->	
+
+				<section class="wlc content-section-section">
+					<center> <h1>Welcome <span style="color: #38d"><?php echo $_SESSION['name'];?></span> </h1> </center>
+				</section>
+				
+
 					<!--Add Product-->
-					<div id="add_product">
+					<section id="add_product" class="content-section-section">
 						<h3 id="content-header">Add Product</h3>
 
 	 				<form action="admin-dashboard.php" method="POST" enctype="multipart/form-data">
 	 					<div class="form-group">
 	 						<label for="">Product Name</label>
-	 						<input type="text" class="form-control" name="product_name" >
+	 						<input type="text" class="form-control" name="product_name" required>
 	 					</div>
 	 					<div class="form-group">
 	 						<label for="">Product Brand</label>
 	 						 <select class="form-control" id="product_brand" name="product_brand">
 							   	 <?php 
-	 								foreach($result as $res){
+	 								foreach($brand_name_result as $res){
 										echo "<option>".$res['brand_name']."</option>";			
 									}
 	 							?>
-						    </select>
+						    </select required>
 	 					</div>
 	 					<div class="form-group">
 	 						<label for="">Product Catagory</label>
@@ -97,7 +110,7 @@
 							      <option>Mobile & Tabs</option>
 							      <option>Camera</option>
 							      <option>Software & Antivirus</option>
-						    </select>
+						    </select required>
 	 					</div>
 	 					<div class="form-group">
 	 						<label for="">Product Image</label>
@@ -105,57 +118,81 @@
 	 					</div>
 	 					<div class="form-group">
 	 						<label for="">Product Price</label>
-	 						<input type="text" class="form-control" name="product_price" >
+	 						<input type="text" class="form-control" name="product_price" required>
 	 					</div>
 
 	 					<input class="btn btn-success float-right" type="submit" name="save" value="Save">
 	 				</form>
 	 				 
-	 				</div>
+	 				</section>
 					<div class="clearfix"></div>
 
 					<!--Product List-->
-	 				<div id="product_list">
+	 				<section id="product_list" class="content-section-section">
 	 					<h3 id="content-header">Product List</h3>
-	 					<table >
-						    <tr>
-						        <td>Product ID</td>
-						        <td>Product Name</td>
-						        <td>Brand</td>
-						        <td>Catagory</td>
-						        <td>Price</td>
-						        <td>Action</td>
-						    </tr>
-						    <?php 
+	 					
+						<div id="product-list-show">
+							
+						</div>
+	 			 
 
-						    $query = "select * from  product";
-							$result = $crud->getData($query);
-						        foreach($result as $key=>$res){
-						            echo"<tr>";
-						            echo"<td>".$res['product_id']."</td>";
-						            echo"<td>".$res['product_name']."</td>";
-						            echo"<td>".$res['product_brand']."</td>";  
-						            echo"<td>".$res['product_catagory']."</td>"; 
-						            echo"<td>".$res['product_price']."</td>";           
-						            echo"<td> <a href=\"edit.php?id=$res[product_id]\">Edit</a> |
-						              <a href=\"delete.php?id=$res[product_id]\">Delete</a></td>";			                    
-						            echo"</tr>";
-						        }			    
-						    ?>
-						    
-						</table>	 					
-	 				</div>
+							
+						<div class="pt-3" id="product-add-form">
+							<form action="admin-dashboard.php" method="POST" enctype="multipart/form-data">
+	 					<div class="form-group">
+	 						<label for="">Product Name</label>
+	 						<input type="text" class="form-control" name="product_name" id="product_name" required>
+	 					</div>
+	 					<div class="form-group">
+	 						<label for="">Product Brand</label>
+	 						 <select class="form-control" id="product_brand" name="product_brand">
+							   	 <?php 
+	 								foreach($brand_name_result as $res){
+										echo "<option>".$res['brand_name']."</option>";			
+									}
+	 							?>
+						    </select required>
+	 					</div>
+	 					<div class="form-group">
+	 						<label for="">Product Catagory</label>
+	 						<select class="form-control" id="" name="product_catagory" id="product_catagory">
+	 							  <option>-- --</option>
+							      <option>Desktop & PC</option>							 
+							      <option>Mobile & Tabs</option>
+							      <option>Camera</option>
+							      <option>Software & Antivirus</option>
+						    </select required>
+	 					</div>
+	 					<div class="form-group">
+	 						<label for="">Product Image</label>
+	 						<input type="file" name="product_image" id="product_image" >
+	 					</div>
+	 					<div class="form-group">
+	 						<label for="">Product Price</label>
+	 						<input type="text" class="form-control" name="product_price" id="product_price" required>
+	 					</div>
+
+	 					<input class="btn btn-danger float-right" type="button" id="cancel" value="Cancel" onclick="$('#product-add-form').slideUp();">
+	 					<input style="margin-right: 5px" class="btn btn-success float-right" type="button" name="save" id="save" value="Save">
+	 				</form>
+						</div>
+
+
+
+
+
+	 				</section>
 				
 					<div class="clearfix"></div>
 
 					<!--Customer List-->
-					<div id="customer-list" class="mt-5">
+					<section id="customer-list" class="content-section-section">
 						<h3 id="content-header">Customer List</h3>
 	 					<table >
 						    <tr>
-						        <td>Name</td>
-						        <td>Email</td>
-						        <td>Phone</td>						        
+						        <th>Name</th>
+						        <th>Email</th>
+						        <th>Phone</th5>						        
 						    </tr>
 						    <?php 
 
@@ -171,7 +208,7 @@
 						    ?>
 						    
 						</table>	
-					</div>
+					</section>
 
 
 	 			</div>
@@ -183,7 +220,7 @@
 
 	<?php 
 
-		$msg="";
+		 
 
 		if(isset($_POST['save'])){
 			
@@ -215,6 +252,11 @@
 
 		}
 
+
+		
+
+
+
 	 ?>
 
 	
@@ -225,19 +267,47 @@
 	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">			
 			 
-		$(document).ready(function(){
+		 $(document).ready(function(){
+		 	 
+		$('#save').click(function(){
+				var product_name = $('#product_name').val();
+				var product_brand = $('#product_brand').val();
+				var product_catagory = $('#product_catagory').val();
+				var product_image = $('#product_image').val();
+				var product_price = $('#product_price').val();
 
-		 
-			$('#add_product_btn').click(function(){
-				 $('#add_product').css({display:'block'});
-				$('#product_list').css({display:'none'});
-			})
-			 
+				$.ajax({
+					url:"product-add.php";
+					type:"POST";
+					data:{product_name:product_name, product_brand:product_brand, product_catagory:product_catagory, product_image:product_image, product_price:product_price},
+					success: function(data){
+						if(data == "success"){
+							var product_name = $('#product_name').val('');
+							var product_brand = $('#product_brand').val('');
+							var product_catagory = $('#product_catagory').val('');
+							var product_image = $('#product_image').val('');
+							var product_price = $('#product_price').val('');
+								$('#product-add-form').slideUp();
+							$.get('product-view.php',function(data){
+								$('#product-list-show').html(data);
+							}) 
+						}
+					}
+
+
+
+				})
+
+
+
+
 		})
-	
+		 	
+ })
 
 	 
 

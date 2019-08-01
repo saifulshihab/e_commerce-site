@@ -29,7 +29,7 @@ class Crud extends DBConfig{
 	}
 	
 	public function delete($id,$table_name){
-		$query = "delete from student_info where sid=$id";
+		$query = "delete from $table_name where id=$id";
 		
 		$result = $this->connection->query($query);
 		if($result == false){

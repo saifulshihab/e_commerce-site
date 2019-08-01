@@ -1,3 +1,14 @@
+<?php
+ 
+include_once 'Crud.php';
+
+$crud = new Crud();
+
+$query = "Select * from product where product_catagory='Camera'";
+
+$result = $crud->getData($query);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -385,7 +396,8 @@
 				<div class="row">
 					<div class="col">
 						<div class="product-view mt-4">
-							 <ul>
+							 
+							  <!-- <ul>
 								<li>
 									<a href="">
 									<img src="images/sony.jpg" alt="">
@@ -421,7 +433,30 @@
 									<span>TK. 80,000</span>
 									</a>
 								</li>							 
-							</ul>
+							</ul> 
+						 -->
+
+							<?php 
+
+								 foreach($result as $key=>$res){
+									echo "<li>";
+									echo "<a>";
+									echo $res['product_image'];
+									echo "<p>".$res['product_name']."</p>";
+									echo "<span>".$res['product_price']."<span>";
+									echo "</a>";
+									echo "</li>";
+
+								}
+
+
+
+
+							?>
+
+
+
+
 						</div>						
 					</div>
 				</div>
