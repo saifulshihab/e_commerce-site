@@ -1,0 +1,89 @@
+ 
+	
+	body{
+ 		 font-family:'Raleway', sans-serif !important;
+	}
+	.demo{
+		width:400px;
+		height:250px;
+		text-align:center;
+		padding:100px 20px;
+		background:#04243c;
+		 
+		border-radius:5px;
+	  	 position: absolute;
+		  margin: auto;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+
+	}
+		
+		input[type="email"],input[type="password"]{
+			background:none;
+			width:250px;
+			padding:10px;
+			border:2px solid #06f;
+			color:#06f;
+			text-align:center;
+			 border-radius:40px;
+			 margin-bottom:15px;
+			 transition: all .3s ease;
+			 
+			
+		}
+		input[type="submit"]{
+			background:none;
+			color:green;
+			width:150px;
+			padding:10px;
+			border:2px solid #52af42;
+			text-align=center;
+			 border-radius:40px;
+			 margin-bottom:5px;
+			 margin-top:15px;
+			 
+			
+		}
+		input[type="email"]:focus,input[type="password"]:focus{
+			width:300px;
+			border:2px solid green;
+			outline:none;
+			
+			
+		}
+				input[type="submit"]:focus{
+			cursor:pointer;
+			border:2px solid #06f2;
+			background:#52af42;
+			outline:none;
+			width:170px;
+			transition:all 0.3s ease;
+			
+		}
+				input[type="submit"]:hover{
+			cursor:pointer;			 					
+		}
+		a{
+			text-decoration:none;
+			font-size:12px;
+			 
+		}
+		p{
+			color:#06f;
+			font-size:12px;
+		}
+		.demo h2{
+			font-weight: 500;
+			 
+			background: #5cc45c;
+			display: inline-block;
+			padding: 5px 105px;
+			border-radius: 20px 0px 20px 0px;
+			margin-bottom: 20px;
+		}
+ 		
+ 		a{
+ 			color:#52af42;
+ 		}
