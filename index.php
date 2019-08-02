@@ -4,9 +4,17 @@ include_once 'Crud.php';
 
 $crud = new Crud();
 
-$query = "Select * from product where product_catagory='Camera'";
+$cameraQuery = "Select * from product where product_catagory='Camera'";
+$cameraResult = $crud->getData($cameraQuery);
 
-$result = $crud->getData($query);
+$watchQuery = "Select * from product where product_catagory='Watch'";
+$watchResult = $crud->getData($watchQuery);
+
+$mobileQuery = "Select * from product where product_catagory='Mobile & Tabs'";
+$mobileResult = $crud->getData($mobileQuery);
+
+$laptopQuery = "Select * from product where product_catagory='Laptop'";
+$laptopResult = $crud->getData($laptopQuery);
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +31,7 @@ $result = $crud->getData($query);
 <body> 
 
 	<!--Top Logo/Search bar/Sign-->
-	  <div class="top-nav  -top">
+	  <div class="top-nav fixed-top bg-light">
 	  	<div class="container">
 			<div class="row">
 				<div class="col-3">
@@ -50,14 +58,13 @@ $result = $crud->getData($query);
 				</div>
 			</div>
 		</div>
-	  </div>
-
+	  
 <!--Navbar-->
 
-
-	  <div class="container">
+		
+	  
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
-		  
+		  <div class="container">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -82,7 +89,7 @@ $result = $crud->getData($query);
 		        <a class="nav-link" href="#">Speaker </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Pendrive </a>
+		        <a class="nav-link" href="#">Watch</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Router </a>
@@ -93,12 +100,14 @@ $result = $crud->getData($query);
 		      
 		    </ul>
 		  </div>
+		  </div>
 		</nav>
-	  </div>
-		
-
+	   
+	</div>	
+<div class="clearfix"></div>
 		<!--Slider-->
-
+		
+		<div id="slider">
 		<div class="container">
 			<div class="slider-wrapper">
 				<div class="row">
@@ -199,14 +208,46 @@ $result = $crud->getData($query);
 				</div>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-		<!--CPU product view-->
+	</div>
+<div class="clearfix"></div>
+
+		 <!--Mobile product view-->
+		<div class="container">
+			<div class="mobile-product mt-5">
+				<div class="row">
+					<div class="col">
+						<div class="header">
+							<h2>Mobile & Tablets</h2>	
+						</div>
+						<div class="header-border"></div>						
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col">
+						<div class="product-view mt-4">
+							 <?php 
+								 foreach($mobileResult as $key=>$res){
+									echo "<li style='width:204px;list-style:none;float:left'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>"; 
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+									echo "<p style='color:black;text-align:center;margin-top:8px'>".$res['product_name']."</p>";
+									echo "</a>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</li>";
+								}
+							?>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Watch Product view-->
 		<div class="container">
 			<div class="cpu-product mt-5">
 				<div class="row">
 					<div class="col">
 						<div class="header">
-							<h2>Desktop & PC</h2>	
+							<h2>Watches</h2>	
 						</div>
 						<div class="header-border">
 							
@@ -217,107 +258,23 @@ $result = $crud->getData($query);
 				<div class="row">
 					<div class="col cpu">
 						<div class="product-view mt-4">
-							 <ul>
-								<li>
-									<a href="product_full_view.php">
-									<img src="images/cpu1.png" alt="">
-									<p>CPU</p>
-									<span>TK. 99,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/cpu2.jpg" alt="">
-									<p>CPU</p>
-									<span>TK. 89,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/cpu3.jpg" alt="">
-									<p>CPU</p>
-									<span>TK. 79,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/cpu2.jpg" alt="">
-									<p>CPU</p>
-									<span>TK. 89,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/cpu1.png" alt="">
-									<p>CPU</p>
-									<span>TK. 69,000</span>
-									</a>
-								</li>							 
-							</ul>
+							   <?php 
+								 foreach($watchResult as $key=>$res){
+									echo "<li style='width:204px;list-style:none;float:left'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>"; 
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+									echo "<p style='color:black;text-align:center;margin-top:8px'>".$res['product_name']."</p>";
+									echo "</a>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</li>";
+								}
+							?>
 						</div>						
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--Mobile product view-->
-		<div class="container">
-			<div class="mobile-product mt-5">
-				<div class="row">
-					<div class="col">
-						<div class="header">
-							<h2>Mobile & Tablets</h2>	
-						</div>
-						<div class="header-border">
-							
-						</div>
-						
-					</div>
-				</div>				
-				<div class="row">
-					<div class="col">
-						<div class="product-view mt-4">
-							 <ul>
-								<li>
-									<a href="">
-									<img src="images/mv1.png" alt="">
-									<p>Huawei P30 Pro </p>
-									<span>TK. 29,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/mv2.png" alt="">
-									<p>iPhone 10</p>
-									<span>TK. 89,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/mv1.png" alt="">
-									<p>Huawei P30 Pro </p>
-									<span>TK. 29,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/mv2.png" alt="">
-									<p>iPhone 10</p>
-									<span>TK. 89,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/mv1.png" alt="">
-									<p>Huawei P30 Pro </p>
-									<span>TK. 29,000</span>
-									</a>
-								</li>							 
-							</ul>
-						</div>						
-					</div>
-				</div>
-			</div>
-		</div>
+	
 		
 
 		<!--Laptop product view-->
@@ -337,43 +294,17 @@ $result = $crud->getData($query);
 				<div class="row">
 					<div class="col">
 						<div class="product-view mt-4">
-							 <ul>
-								<li>
-									<a href="">
-									<img src="images/lv1.png" alt="">
-									<p>Asus ZenBook</p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/lv2.png" alt="">
-									<p>HP Pavilion</p>
-									<span>TK. 49,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/lv1.png" alt="">
-									<p>Asus ZenBook </p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/lv2.png" alt="">
-									<p>HP Pavilion</p>
-									<span>TK. 49,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/lv1.png" alt="">
-									<p>Asus ZenBook </p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>							 
-							</ul>
+							   <?php 
+								 foreach($laptopResult as $key=>$res){
+									echo "<li style='width:204px;list-style:none;float:left'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>"; 
+								     echo "<a href='product_full_view.php?id=".$res['id']."'>";
+									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
+									echo "</a>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</li>";
+								}
+							?>
 						</div>						
 					</div>
 				</div>
@@ -395,68 +326,44 @@ $result = $crud->getData($query);
 				</div>				
 				<div class="row">
 					<div class="col">
-						<div class="product-view mt-4">
-							 
-							  <!-- <ul>
-								<li>
-									<a href="">
-									<img src="images/sony.jpg" alt="">
-									<p>Sony</p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/nikon.png" alt="">
-									<p>Nikon</p>
-									<span>TK. 49,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/sony.jpg" alt="">
-									<p>Sony </p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/nikon.png" alt="">
-									<p>Nikon</p>
-									<span>TK. 49,000</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
-									<img src="images/sony.jpg" alt="">
-									<p>Sony </p>
-									<span>TK. 80,000</span>
-									</a>
-								</li>							 
-							</ul> 
-						 -->
-
+						<div class="product-view mt-4">		
 							<?php 
 
-								 foreach($result as $key=>$res){
-									echo "<li>";
-									echo "<a>";
-									echo $res['product_image'];
-									echo "<p>".$res['product_name']."</p>";
-									echo "<span>".$res['product_price']."<span>";
+								 foreach($cameraResult as $key=>$res){
+									echo "<li style='width:204px;list-style:none;float:left'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>"; 
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
 									echo "</a>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
 									echo "</li>";
-
 								}
-
-
-
-
 							?>
 
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
 
-
-
+		<!--CPU Product view-->
+		<div class="container">
+			<div class="cpu-product mt-5">
+				<div class="row">
+					<div class="col">
+						<div class="header">
+							<h2>Desktop & PC</h2>	
+						</div>
+						<div class="header-border">
+							
+						</div>
+						
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col cpu">
+						<div class="product-view mt-4">
+							  
 						</div>						
 					</div>
 				</div>
@@ -543,7 +450,7 @@ $result = $crud->getData($query);
  
  
 	<!-- JavaScript Files -->
-	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	 <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
 

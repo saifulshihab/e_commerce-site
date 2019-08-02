@@ -3,13 +3,12 @@
 	include_once 'Crud.php';
 	
 	$crud = new Crud();
-	
-		$target = "images/".basename($_FILES['product_image']['name']);
-			$p_name = $_POST['product_name'];
-			$p_brand = $_POST['product_brand'];
-			$p_catgory = $_POST['product_catagory'];
-			$p_image =  $_FILES['product_image']['name'];
-			$p_price = $_POST['product_price'];
+			 
+			$p_name = $_POST['p_name'];
+			$p_brand = $_POST['p_brand'];
+			$p_catgory = $_POST['p_catagory'];
+			$p_image =  $_POST['p_image'];
+			$p_price = $_POST['p_price'];
 
 			 
 
@@ -20,17 +19,4 @@
 			}else{
 				echo "Problem";
 			}
-
-
-			if(move_uploaded_file($_FILES['product_image']['tmp_name'], $target)){
-				echo  "Image uploaded";
-			}else{
-				echo "Image not uploaded";
-			}
-
-
-		 
-		
-	
-	
 ?>

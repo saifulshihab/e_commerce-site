@@ -1,3 +1,22 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['email'])){
+		header('location:admin-login.php');
+	}
+
+	include_once 'Crud.php';
+	$crud = new Crud();
+	$id = $_GET['id'];
+
+	echo '$id';
+
+	$query = "Select * from product where id=$id";
+	$result = $crud->getData($query);
+ 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +32,7 @@
 <body> 
 
 	<!--Top Logo/Search bar/Sign-->
-	  <div class="top-nav ">
+	  <div class="top-nav fixed-top bg-light">
 	  	<div class="container">
 			<div class="row">
 				<div class="col-3">
@@ -32,22 +51,21 @@
 				<div class="col-3">
 					 <div class="top-login-reg float-left">
 					 		<ul>
-					 			 <li><a href="">Login</a></li>
-					 			 <li><a href="">Registration</a></li>
+					 			 <li><a href="customer-login.php">Login</a></li>
+					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>				 
 				 	 </div>
 				</div>
 			</div>
 		</div>
-	  </div>
-
+	  
 <!--Navbar-->
 
-
-	  <div class="container">
+		
+	  
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
-		  
+		  <div class="container">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -72,7 +90,7 @@
 		        <a class="nav-link" href="#">Speaker </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Pendrive </a>
+		        <a class="nav-link" href="#">Watch</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Router </a>
@@ -83,127 +101,73 @@
 		      
 		    </ul>
 		  </div>
+		  </div>
 		</nav>
-	  </div>
-		
-
+	   
+	</div>	
+<div class="clearfix"></div>
 	 
+ 		<div class="product-full-view p-5">
+ 			<div class="container">
 
-	 	<div class="container mt-5">
-	 		<div class="row">
-	 			<div class="col-5">
-	 				<div class="product-img">
-	 					<span><img style="width: 100%" src="images/casing.jpg" alt=""></span>
-	 				</div>
-	 			</div>
-	 			<div class="col-7">
-	 				
-						
-						<table >
-		  
-							 
-							 <?php 
+ 				<div class="row">
+ 					<div class="col-5">
+ 						<div class="product-img">
+		 					<?php 
+		 						foreach($result as $res){
+									echo "<td><img width='70%' src='".$res['product_image']."'/></td>";
+								}
+		 					 ?> 					
+ 						</div>
+ 					</div>
+ 					<div class="col-7 mt-5">
+ 						<div class="row pb-3">
+ 							<div class="col">
+ 								<?php 
+		 							foreach($result as $res){
+										echo "<h2>".$res['product_name']."</h2>";
+									}
+		 					 	?>
+ 							</div>
+ 						</div>
+ 						<table>
+ 							<tr>
+ 								<th>Brand</th>
+								<?php 
+		 							foreach($result as $res){
+										echo "<td>".$res['product_brand']."</td>";
+									}
+		 					 	?> 
+ 							</tr>
+ 							<tr>
+ 								<th>Catagory</th>
+								<?php 
+		 							foreach($result as $res){
+										echo "<td>".$res['product_catagory']."</td>";
+									}
+		 					 	?> 
+ 							</tr>
+ 							<tr>
+ 								<th>Price</th>
+								<?php 
+		 							foreach($result as $res){
+										echo "<td>".$res['product_price']."</td>";
+									}
+		 					 	?> 
+ 							</tr>
+ 						</table>
 
-								 include_once 'Crud.php';							 
+ 						<div class="buy_now mt-5">
+ 							<button class="btn btn-sm btn-primary"><i class="fas fa-cart-plus" style="margin-right: 2px"></i>Add Cart</button>
+ 							<button class="btn btn-sm btn-success"><i class="fas fa-shopping-bag" style="margin-right: 2px"></i>Buy Now</button>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				
+ 			</div>
+ 		</div>
 
-								$crud = new Crud();
-
-								$query = "select * from  product";
-								$result = $crud->getData($query);
-					   		 ?>
-
-							 
-							 <tr><th>Product Name</th>
-								 
-							 <?php 
-
-								 include_once 'Crud.php';							 
-
-								$crud = new Crud();
-
-								$query = "select * from  product";
-								$result = $crud->getData($query);
-
-						        foreach($result as $key=>$res){
-						           
-						            echo"<td>".$res['product_name']."</td>";
-						            
-						          
-						        }
-					   		 ?> 		
-					   		 </tr>							
-								 <tr><th>Product Brand</th>
-								 
-							 <?php 
-
-								 include_once 'Crud.php';							 
-
-								$crud = new Crud();
-
-								$query = "select * from  product";
-								$result = $crud->getData($query);
-
-						        foreach($result as $key=>$res){
-						           
-						            echo"<td>".$res['product_brand']."</td>";
-						            
-						          
-						        }
-					   		 ?> 		
-					   		 </tr>		
-								 <tr><th>Product Catagory</th>
-								 
-							 <?php 
-
-								 include_once 'Crud.php';							 
-
-								$crud = new Crud();
-
-								$query = "select * from  product";
-								$result = $crud->getData($query);
-
-						        foreach($result as $key=>$res){
-						           
-						            echo"<td>".$res['product_catagory']."</td>";
-						            
-						          
-						        }
-					   		 ?> 		
-					   		 </tr>		
-								  <tr><th>Product Price</th>
-								 
-							 <?php 
-
-								 include_once 'Crud.php';							 
-
-								$crud = new Crud();
-
-								$query = "select * from  product";
-								$result = $crud->getData($query);
-
-						        foreach($result as $key=>$res){
-						           
-						            echo"<td>".$res['product_price']."</td>";
-						            
-						          
-						        }
-					   		 ?> 		
-					   		 </tr>		
-			 
-						</table>
-
-
-
-	 				
-	 			</div>
-	 		</div>
-	 	</div>
-		
-
-
-
-
-	 
+		 
  		
 		<!--Footer-->
 		
@@ -285,7 +249,7 @@
  
  
 	<!-- JavaScript Files -->
-	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	 <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
 

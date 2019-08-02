@@ -9,36 +9,37 @@ $query = "Select * from product";
 $result = $crud->getData($query);
 
 ?>
-<button id="add-data">Add New Data</button>
- 
 
-						<table >
-							 <tr>
-						        <th>Product ID</th>
-						        <th>Product Name</th>
-						        <th>Brand</th>
-						        <th>Catagory</th>
-						        <th>Price</th>
-						        <th>Action</th>
-						    </tr>
-						    <?php 
+<table >
+	<tr>
+		 <th>Product ID</th>
+		 <th>Product Name</th>
+		 <th>Brand</th>
+		 <th>Catagory</th>
+		 <th>Picture</th>
+		 <th>Price</th>
+		 <th>Action</th>					        			       
+	  </tr>
+ <?php 
 
-						    $query = "select * from  product";
-							$result = $crud->getData($query);
-						        foreach($result as $key=>$res){
-						            echo"<tr>";
-						            echo"<td>".$res['id']."</td>";
-						            echo"<td>".$res['product_name']."</td>";
-						            echo"<td>".$res['product_brand']."</td>";  
-						            echo"<td>".$res['product_catagory']."</td>"; 
-						            echo"<td>".$res['product_price']."</td>";           
-						            echo"<td><button id=".$res['id']." class='edit'>Edit</button> | <button id=".$res['id']." class='delete'>Delete</button></td>";			                    
-						            echo"</tr>";
-						        }			    
-						    ?>
+	  $query = "select * from  product";
+	  $result = $crud->getData($query);
+	foreach($result as $key=>$res){
+		 echo"<tr>";
+		 echo"<td>".$res['id']."</td>";
+		 echo"<td>".$res['product_name']."</td>";
+		 echo"<td>".$res['product_brand']."</td>";  
+		 echo"<td>".$res['product_catagory']."</td>";
+		 echo "<td><img width='20%' src='".$res['product_image']."'/></td>"; 
+		 echo"<td>".$res['product_price']."</td>";           
+		 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'><i class='fas fa-edit'style='margin-right:1px'></i></button><button id=" .$res['id']." class='delete btn btn-sm btn-warning'><i class='fas fa-trash-alt' style='margin-right:2px'></i></button></td>";			                    
+		 echo"</tr>";
+	 }			    
+?>
 						    
-						</table>
+</table>
 
+<button class="btn btn-primary btn-sm mt-2" id="add-data"><i class="fas fa-plus-circle mr-2"></i>Add New Product</button>
 
 <script type="text/javascript">
  	$(document).ready(function(){
@@ -64,7 +65,7 @@ $result = $crud->getData($query);
  		$('.delete').click(function(){
  			var id = $(this).attr('id');
  			$.ajax({
- 				url:"delete.php",
+ 				url:"product-delete.php",
  				type:"POST",
  				data:{id:id},
  				success: function(data){
