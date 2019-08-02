@@ -1,3 +1,6 @@
+.product-full-view{
+	margin-top: 100px !important;
+}
 table tr{
 	display: block;
 	margin-bottom: 20px;	 
@@ -7,6 +10,6 @@ table tr{
 	background: yellow;
 }
  table th{
+	 width: 150px;
 	 
-	padding-right:10.3125em;	 
 }

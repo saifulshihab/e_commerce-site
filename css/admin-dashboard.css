@@ -9,11 +9,16 @@ body{
 	padding-right: 0;
 	padding-left: 0;
 }
+.head .title h1{
+	font-weight: bold !important;
+	color: white;
+	margin-top: 9px;
+}
 .head .logo{
 	margin: 12px 30px;
 }
 .head .logout{
-	margin: -55px 0px;
+	margin: 18px 0px;
 }
 .head .logout i{
 	margin-right: 4px;  
@@ -43,7 +48,9 @@ body{
 #main-menu a:hover{
 	background: #334C57;
 }
- 
+ #sub-menu{
+ 	background: rgb(32, 32, 32) none repeat scroll 0% 0%;
+ }
 
 i{
 	margin-right: 15px;  
@@ -84,15 +91,20 @@ i{
 #product_list table, #customer-list table {
    
   border-collapse: collapse;
-  width: 80%;
+   
+}
+ #customer-list table {
+   
+   
+   width: 96%;
 }
 
 #product_list td, th, #customer-list td, th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
-
+ 
 #product_list tr:nth-child(even) , #customer-list tr:nth-child(even) {
   background-color: #dddddd;
 }
