@@ -135,7 +135,7 @@
 		 					<div class="form-group">
 		 						<label for=""><strong>Product Catagory</strong></label>
 		 						<select class="form-control" id="product_catagory" name="product_catagory">
-		 							  <option value="" selected disabled>--Select Catagory--</option>
+		 							  <option value="0" selected disabled>--Select Catagory--</option>
 								      <option value="1">Desktop & PC</option>							 
 								      <option value="2">Mobile & Tabs</option>
 								      <option value="3">Camera</option>
@@ -165,7 +165,7 @@
 		 				</form>
 						</div>
 
-
+					<div id="product-edit-form" class="mt-5"></div>
 
 
 
@@ -246,19 +246,23 @@
 				var product_brand = $('#product_brand_txt').val();
 				var product_catagory = $('#product_catagory_txt').val();
 				var product_image = $('#preview').attr('src');
-				console.log(product_image);
 				var product_price = $('#product_price').val();
 
+				if(product_name==""){
+					alert("Please, Fill all input properly!");
+				}else{
 				$.ajax({
 					url:"product-add.php",
 					type:"POST",
 					data:{p_name:product_name, p_brand:product_brand, p_catagory:product_catagory, p_image:product_image, p_price:product_price},
 					success: function(data){
 						if(data == "success"){
-							var product_name = $('#product_name').val('');
-							var product_brand = $('#product_brand_txt').val('');
-							var product_catagory = $('#product_catagory_txt').val('');
-							var product_price = $('#product_price').val('');
+							 $('#product_name').val('');
+							 $('#product_brand_txt').val('');
+							  $('#product_brand').attr('selectedIndex', 0);
+							 $('#product_catagory_txt').val('');
+							 $('#product_catagory').attr('selectedIndex', 0);
+							 $('#product_price').val('');
 								$('#product-add-form').slideUp();
 							$.get('product-view.php',function(data){
 								$('#product-list-show').html(data);
@@ -269,7 +273,7 @@
 
 
 				})
-
+}
 
 
 

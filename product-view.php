@@ -30,7 +30,7 @@ $result = $crud->getData($query);
 		 echo"<td>".$res['product_name']."</td>";
 		 echo"<td>".$res['product_brand']."</td>";  
 		 echo"<td>".$res['product_catagory']."</td>";
-		 echo "<td><img width='20%' src='".$res['product_image']."'/></td>"; 
+		 echo "<td><img width='50%' src='".$res['product_image']."'/></td>"; 
 		 echo"<td>".$res['product_price']."</td>";           
 		 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'><i class='fas fa-edit'style='margin-right:1px'></i></button><button id=" .$res['id']." class='delete btn btn-sm btn-warning'><i class='fas fa-trash-alt' style='margin-right:2px'></i></button></td>";			                    
 		 echo"</tr>";
@@ -39,7 +39,7 @@ $result = $crud->getData($query);
 						    
 </table>
 
-<button class="btn btn-primary btn-sm mt-2" id="add-data"><i class="fas fa-plus-circle mr-2"></i>Add New Product</button>
+<button class="btn btn-primary mt-2" id="add-data" style="display: block;margin: 0 auto;"><i class="fas fa-plus-circle mr-2"></i>Add New Product</button>
 
 <script type="text/javascript">
  	$(document).ready(function(){
@@ -56,8 +56,8 @@ $result = $crud->getData($query);
  				type:"POST",
  				data:{id:id},
  				success: function(data){
- 					$('#product-edit-form').show();
- 					$('#product-edit-form').html();
+ 					$('#product-edit-form').slideDown();
+ 					$('#product-edit-form').html(data);
  				}
  			})
  		})
