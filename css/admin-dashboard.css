@@ -102,7 +102,7 @@ i{
 #product_list td, th, #customer-list td, th {
   border: 1px solid #dddddd;
   text-align: center;
-  padding: 8px;
+  padding: 2px 55px;
 }
  
 #product_list tr:nth-child(even) , #customer-list tr:nth-child(even) {
