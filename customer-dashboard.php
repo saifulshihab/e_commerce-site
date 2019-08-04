@@ -7,6 +7,11 @@
 	include_once 'Crud.php';
 	$crud = new Crud();
 
+	$email = $_SESSION['customer_email'];
+
+	$query = "select * from customer_registration where customer_email='$email'";
+	$result = $crud->getData($query);
+
 ?>
  
 <!DOCTYPE html>
@@ -28,6 +33,7 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">	
 	<link rel="stylesheet" href="css/admin-dashboard.css">
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="css/customer-dashboard.css">
 	<link rel="icon" href="image/favicon.png">
  
 </head>
@@ -36,11 +42,11 @@
 	 <div class="dashboard">
 		
 		<!--Navbar-->
-		<div class="row head fixed-top">
+		<div class="row head head2 fixed-top">
 			 
 				<div class="col-3">
 					<div class="logo">
-		 				<a href="index.php">
+		 				<a href="#Welcome">
 		 				<img src="images/logo.png" alt="" style="width: 230px;">
 		 				</a>
 		 			</div>
@@ -68,10 +74,11 @@
 		 			 <div id="main-menu" class="list-group pt">
 	 				 
 	 				 
-	 		 		 <a href="#customer-list" class="list-group-item"><i class="fas fa-user-circle"></i>My Account</a> 	 
+	 		 		 <a href="#myaccount" class="list-group-item"><i class="fas fa-user-circle"></i>My Account</a> 	 
 	 				 <a href=""class="list-group-item"><i class="fas fa-heart"></i>Wishlist</a>
-	 				 <a href=""class="list-group-item"><i class="fas fa-cart-arrow-down"></i>Order</a> 	
-	 				 <a href=""class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a> 
+	 				 <a href="#"class="list-group-item"><i class="fas fa-cart-arrow-down"></i>Order</a> 	
+	 				 <a href="#"class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+	 				 <a href="index.php"class="list-group-item"><i class="fas fa-home"></i>Go To Home</a> 
 	 				 </div>
 	 			</div>
 	 		</div> 
@@ -90,7 +97,38 @@
 				</section>
 				 
 					<div class="clearfix"></div>
- 
+ 					<section id="myaccount" class="content-section-section">
+ 						<h3 id="content-header">My Account</h3>
+
+ 						<table>
+ 							<tr>
+ 								<th>Name</th>
+ 									<?php 
+			 						foreach($result as $res){
+									 echo "<td>".$res['customer_name']."</td>";
+								}
+		 					 ?> 
+ 							</tr>
+ 							<tr>
+ 								<th>Email</th>
+ 									<?php 
+ 										foreach ($result as $res) {
+											echo "<td>".$res['customer_email']."</td>";
+ 										}
+ 									?>
+ 							</tr>
+ 							<tr>
+ 								<th>Phone</th>
+ 									<?php 
+ 										foreach ($result as $res) {
+											echo "<td>".$res['country_code'].$res['customer_phone']."</td>";
+ 										}
+ 									?>
+ 							</tr>
+ 							 
+ 						</table>
+
+ 					</section>
  
 
 	 			</div>

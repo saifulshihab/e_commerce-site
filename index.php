@@ -49,6 +49,7 @@ $laptopResult = $crud->getData($laptopQuery);
 				</div>
 				<div class="col-3">
 					 <div class="top-login-reg float-left">
+					 	<a href="main_cart.php" title="Your shopping cart."><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
 					 			 <li><a href="customer-login.php">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
@@ -71,25 +72,25 @@ $laptopResult = $crud->getData($laptopQuery);
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item ">
-		        <a class="nav-link" href="#">Mobile & Tabs<span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="#mobile">Mobile & Tabs<span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Laptop </a>
+		        <a class="nav-link" href="#laptop">Laptop </a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Desktop & PC </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Camera </a>
+		        <a class="nav-link" href="#camera">Camera </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">RAM </a>
-		      </li>
+		        <a class="nav-link" href="#watch">Watch</a>
+		      </li>		      
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Speaker </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Watch</a>
+		        <a class="nav-link" href="#">RAM </a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Router </a>
@@ -212,8 +213,10 @@ $laptopResult = $crud->getData($laptopQuery);
 <div class="clearfix"></div>
 
 		 <!--Mobile product view-->
+	<div id="product_wrapper">
 		<div class="container">
-			<div class="mobile-product mt-5">
+			<div id="mobile" style="width:100%;height: 100px"></div>
+			<div class="mt-5" id="mobile-product">
 				<div class="row">
 					<div class="col">
 						<div class="header">
@@ -243,7 +246,8 @@ $laptopResult = $crud->getData($laptopQuery);
 		</div>
 		<!--Watch Product view-->
 		<div class="container">
-			<div class="cpu-product mt-5">
+			<div id="watch" style="width:100%;height: 100px"></div>
+			<div class="mt-5" id="cpu-product">
 				<div class="row">
 					<div class="col">
 						<div class="header">
@@ -279,6 +283,7 @@ $laptopResult = $crud->getData($laptopQuery);
 
 		<!--Laptop product view-->
 		<div class="container">
+			<div id="laptop" style="width:100%;height: 100px"></div>
 			<div class="laptop-product mt-5">
 				<div class="row">
 					<div class="col">
@@ -312,6 +317,7 @@ $laptopResult = $crud->getData($laptopQuery);
 		</div>
 		<!--Camera product view-->
 		<div class="container">
+			<div id="camera" style="width:100%;height: 100px"></div>
 			<div class="camera-product mt-5">
 				<div class="row">
 					<div class="col">
@@ -348,7 +354,7 @@ $laptopResult = $crud->getData($laptopQuery);
 
 		<!--CPU Product view-->
 		<div class="container">
-			<div class="cpu-product mt-5">
+			<div class="mt-5" id="cpu-product">
 				<div class="row">
 					<div class="col">
 						<div class="header">
@@ -369,7 +375,7 @@ $laptopResult = $crud->getData($laptopQuery);
 				</div>
 			</div>
 		</div>
- 		
+ 	</div>
 		<!--Footer-->
 		
 		<footer class="bg-dark mt-5" style="height: auto;">

@@ -72,7 +72,7 @@ $crud = new crud();
 
 		 					<div class="form-group">
 		 						
-		 						<input style="color: green" type="file" onchange="showImage(this,'preview')" name="uproduct_image" id="uproduct_image_url" required>
+		 						<input style="color: green" type="file" onchange="showImage(this,'upreview')" name="uproduct_image" id="uproduct_image_url" required>
 		 					</div>
 		 					<div class="form-group">
 		 						<label for=""><strong>Product Price</strong></label>

@@ -1,18 +1,11 @@
 <?php
+ 
+include_once 'Crud.php';
 
-	include_once 'Crud.php';
-	$crud = new Crud();
-	$id = $_GET['id'];
-
-	echo $id;
-
-	$query = "Select * from product where id=$id";
-	$result = $crud->getData($query);
+$crud = new Crud();
  
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +15,7 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">	
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/product_full_view.css">
+	<link rel="stylesheet" href="css/main_cart.css">
 	<link rel="icon" href="image/favicon.png">
 </head>
 <body> 
@@ -69,25 +62,25 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item ">
-		        <a class="nav-link" href="#">Mobile & Tabs<span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="#mobile">Mobile & Tabs<span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Laptop </a>
+		        <a class="nav-link" href="#laptop">Laptop </a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Desktop & PC </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Camera </a>
+		        <a class="nav-link" href="#camera">Camera </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">RAM </a>
-		      </li>
+		        <a class="nav-link" href="#watch">Watch</a>
+		      </li>		      
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Speaker </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Watch</a>
+		        <a class="nav-link" href="#">RAM </a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Router </a>
@@ -103,74 +96,49 @@
 	   
 	</div>	
 <div class="clearfix"></div>
-	 
- 		<div class="product-full-view p-5">
- 			<div class="container">
 
- 				<div class="row">
- 					<div class="col-5">
- 						<div class="product-img">
-		 					<?php 
-		 						foreach($result as $res){
-									echo "<td><img width='70%' src='".$res['product_image']."'/></td>";
-								}
-		 					 ?> 					
- 						</div>
- 					</div>
- 					<div class="col-7 mt-5">
- 						<div class="row pb-3">
- 							<div class="col">
- 								<?php 
-		 							foreach($result as $res){
-										echo "<h2>".$res['product_name']."</h2>";
-									}
-		 					 	?>
- 							</div>
- 						</div>
- 						<table>
- 							<tr>
- 								<th>Brand</th>
-								<?php 
-		 							foreach($result as $res){
-										echo "<td>".$res['product_brand']."</td>";
-									}
-		 					 	?> 
- 							</tr>
- 							<tr>
- 								<th>Catagory</th>
-								<?php 
-		 							foreach($result as $res){
-										echo "<td>".$res['product_catagory']."</td>";
-									}
-		 					 	?> 
- 							</tr>
- 							<tr>
- 								<th>Price</th>
-								<?php 
-		 							foreach($result as $res){
-										echo "<td>".$res['product_price']."</td>";
-									}
-		 					 	?> 
- 							</tr>
- 						</table>
- 
- 						<div class="buy_now mt-5">
- 							<?php 
- 								foreach ($result as $key => $res) {
- 									echo "<button id=".$_GET['id']." class='btn btn-sm btn-primary add_cart_btn' style='margin-right:3px'><i class='fas fa-cart-plus' style='margin-right: 4px'></i>Add Cart</button>";
- 									echo "<button id=".$_GET['id']." class='btn btn-sm btn-success buy_now_btn'><i class='fas fa-shopping-bag' style='margin-right: 4px'></i>Buy Now</button>";
- 								}
- 							?>
- 		
- 						</div>
- 					</div>
- 				</div>
- 				
- 			</div>
- 		</div>
 
-		 
- 		
+	<!--Content-->
+
+	<div class="cart_data_wrapepr">
+		<div class="container">
+			<div class="cart_data" style="margin-top:200px">
+				<div class="title">
+				<h3 >Your shopping cart</h3>
+				</div>
+				<table>
+					<tr>
+						<th>Product ID</th>
+						<th>Product Name</th>
+						<th>Product Brand</th>
+						<th>Product Catagory</th>
+						<th>Product Image</th>
+						<th>Product Price</th>
+						<th>Action</th>
+					</tr>
+					<?php 
+					$result =$crud->getData("select * from cart");
+						foreach ($result as $key => $res) {
+							echo "<tr>";
+							echo "<td>".$res['p_id']."<?td>";
+							echo "<td>".$res['p_name']."<?td>";
+							echo "<td>".$res['p_brand']."<?td>";
+							echo "<td>".$res['p_catagory']."<?td>";
+							echo "<td><img width='150%' src='".$res['p_image']."'/></td>"; 
+							echo "<td>".$res['p_price']."<?td>";
+							 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'><i class='fas fa-shopping-bag'style='margin-right:1px;margin-left:-2px'></i>Buy Now</button></td>";
+							echo "</tr>";
+						}
+					?>
+				</table>
+				<button class="btn btn-warning btn-md btn-block" style="margin-left: 60px;margin-top: 15px">Clear cart</button>
+			</div>
+		</div> 
+	</div>
+
+
+
+
 		<!--Footer-->
 		
 		<footer class="bg-dark mt-5" style="height: auto;">
@@ -259,26 +227,6 @@
  		$('.carousel').carousel({
  			interval: 3000 
  		})
-
- 		$(document).ready(function(){
- 			$('.add_cart_btn').click(function(){
- 				var id = $(this).attr('id');
- 				$.ajax({
- 					url:"customer_cart.php",
- 					type:"POST",
- 					data:{id:id},
- 					success:function(data){
- 						 if(data=="success"){
- 						 	alert("Added to Cart Successfully.");
- 						 }
- 					}
- 				})
- 			})
- 		})
-
-
-
-
  	</script>
 
 
