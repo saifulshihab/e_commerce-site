@@ -1,6 +1,9 @@
 .product-full-view{
 	margin-top: 100px !important;
 }
+.product-full-view table{
+	margin-left: -100px;
+}
 table tr{
 	display: block;
 	margin-bottom: 20px;	 

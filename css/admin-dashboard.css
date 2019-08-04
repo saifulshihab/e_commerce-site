@@ -9,6 +9,10 @@ body{
 	padding-right: 0;
 	padding-left: 0;
 }
+.head2{
+	background: #128266;
+}
+
 .head .title h1{
 	font-weight: bold !important;
 	color: white;
@@ -88,23 +92,21 @@ i{
 	 
 }
 
-#product_list table, #customer-list table {
+#product_list table, #customer-list table, #myaccount table {
    
   border-collapse: collapse;
    
 }
- #customer-list table {
-   
-   
+ #customer-list table, #myaccount table {
    width: 96%;
 }
 
-#product_list td, th, #customer-list td, th {
+#product_list td, th, #myaccount td, th, #customer-list td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 2px 55px;
 }
  
-#product_list tr:nth-child(even) , #customer-list tr:nth-child(even) {
+#product_list tr:nth-child(even) , #customer-list tr:nth-child(even), #myaccount tr:nth-child(even) {
   background-color: #dddddd;
 }
