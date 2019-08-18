@@ -24,7 +24,7 @@ html{
 	margin-top: 5px;
 }
 .top-search-box  input[type="text"]{
-	width: 75%;
+	width: 60%;
 	background: none;
 	color:  #797979;
 	border: 1.5px solid #959595;
@@ -32,7 +32,7 @@ html{
 	padding: 5px 15px;
 }
 .top-search-box  input[type="text"]:focus{
-	width: 90%;
+	width: 75%;
 	border: 1.5px solid #3df2da;
 	outline: none;
 	transition: all 0.3s ease;
@@ -74,6 +74,12 @@ padding: 0;
 .top-login-reg a i{
 	font-size: 25px;
     color: #ffa500;
+}
+.top-login-reg .ma{
+	float: right;
+	display: inline-block;
+	margin-top: -28px;
+    margin-right: -35px;
 }
 .top-login-reg a i:hover{
     color:#d59a2e;
@@ -137,9 +143,7 @@ i {
 #product_wrapper{
 	margin-top: 40px;
 }
-#mobile-product {}
-#mobile-product ul{list-style: none;}
-#mobile-product ul li{float: left;text-align: center;}
+
 #mobile-product .header h2{
 	font-size: 20px;
 	display: inline-block;
@@ -153,19 +157,6 @@ i {
 	height: 3px;
 	background: #ae9bf5;
 }
-#mobile-product .product-view{
-
-}
-#mobile-product ul li p{
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-#mobile-product ul li span{
-	font-weight: bold;
-}
-.laptop-product {}
-.laptop-product ul{list-style: none;}
-.laptop-product ul li{float: left;text-align: center;}
 .laptop-product .header h2{
 	font-size: 20px;
 	display: inline-block;
@@ -179,23 +170,7 @@ i {
 	height: 3px;
 	background: #71daf0;
 }
-.laptop-product .product-view{
 
-}
-.laptop-product ul li p{
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-.laptop-product ul li span{
-	font-weight: bold;
-}
- 
- 
-
-
-.camera-product {}
-.camera-product ul{list-style: none;}
-.camera-product ul li{float: left;text-align: center;}
 .camera-product .header h2{
 	font-size: 20px;
 	display: inline-block;
@@ -209,22 +184,7 @@ i {
 	height: 3px;
 	background: #98e4b7;
 }
-.camera-product .product-view{
 
-}
-.camera-product ul li p{
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-.camera-product ul li img{
-	width: 200px;
-}
-.camera-product ul li span{
-	font-weight: bold;
-}
-#cpu-product {}
-#cpu-product ul{list-style: none;}
-#cpu-product ul li{float: left;text-align: center;}
 #cpu-product .header h2{
 	font-size: 20px;
 	display: inline-block;
@@ -238,15 +198,11 @@ i {
 	height: 3px;
 	background: #fd7d7d;
 }
-#cpu-product .product-view{
 
-}
-#cpu-product ul li p{
-    margin-top: 20px;
-    margin-bottom: 0px;
-}
-#cpu-product ul li span{
-	font-weight: bold;
+.product-view{
+	display: block;
+	height: 310px;
+	overflow: hidden;
 }
 .footer-control{background: black}
 .general h5{
@@ -288,7 +244,7 @@ color: #3df2da;
     width:0px !important;
     display: flex;
 }
-.fab{color: #6a6a6a}
+.fab{color: black}
 .fa-facebook:hover{color: #4267b2}
 .fa-twitter-square:hover{
 	outline: none;color: #38A1F3
@@ -305,21 +261,3 @@ color: #3df2da;
 }
 i{border:none;}
 
-.cart_data table {
-   
-  border-collapse: collapse;
-   width: 100%;
-}
- 
-.cart_data td, th {
-  
-  text-align: center;
-  padding: 2px 55px;
-}
-.cart_data th {
-	background: #e9ecef;
-}
-.cart_data td:last-child{
-  
-  padding: 2px 5px;
-}

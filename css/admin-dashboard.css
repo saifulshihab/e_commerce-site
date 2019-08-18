@@ -92,7 +92,7 @@ i{
 	 
 }
 
-#product_list table, #customer-list table, #myaccount table {
+#product_list table, #customer-list table, #myaccount table, #order table {
    
   border-collapse: collapse;
    
@@ -100,13 +100,24 @@ i{
  #customer-list table, #myaccount table {
    width: 96%;
 }
+#order table{
+	width: 70%;
+}
 
 #product_list td, th, #myaccount td, th, #customer-list td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 2px 55px;
 }
+#product_list td:last-child{
+  padding: 2px 0;
+}
+#order td, th{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 2px 15px;
+}
  
-#product_list tr:nth-child(even) , #customer-list tr:nth-child(even), #myaccount tr:nth-child(even) {
+#product_list tr:nth-child(even) , #customer-list tr:nth-child(even), #myaccount tr:nth-child(even), #order tr:nth-child(even) {
   background-color: #dddddd;
 }
