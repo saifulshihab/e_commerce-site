@@ -38,6 +38,14 @@ class Crud extends DBConfig{
 			return true;
 
 	}
-}
+	}
+	public function alldelete($table_name){
+		$result=$this->connection->query("delete from $table_name");
+		if($result==false){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }
 ?>

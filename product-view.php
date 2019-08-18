@@ -30,9 +30,9 @@ $result = $crud->getData($query);
 		 echo"<td>".$res['product_name']."</td>";
 		 echo"<td>".$res['product_brand']."</td>";  
 		 echo"<td>".$res['product_catagory']."</td>";
-		 echo "<td><img width='50%' src='".$res['product_image']."'/></td>"; 
+		 echo "<td><img width='40%' src='".$res['product_image']."'/></td>"; 
 		 echo"<td>".$res['product_price']."</td>";           
-		 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'><i class='fas fa-edit'style='margin-right:1px'></i></button><button id=" .$res['id']." class='delete btn btn-sm btn-warning'><i class='fas fa-trash-alt' style='margin-right:2px'></i></button></td>";			                    
+		 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'  style='margin-right:5px'><i class='fas fa-edit'style='margin-right:1px'></i></button><button id=" .$res['id']." class='delete btn btn-sm btn-warning'><i class='fas fa-trash-alt' style='margin-right:2px'></i></button></td>";			                    
 		 echo"</tr>";
 	 }			    
 ?>

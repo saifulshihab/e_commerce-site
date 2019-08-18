@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	 <link rel="stylesheet" href="css/style.css">
 	 <link rel="stylesheet" href="css/admin-registration.css">
-	<link rel="icon" href="techhub/image/favicon.png">
+	<link rel="icon" href="techhub/images/favicon.png">
 </head>
 <body>
 	<div class="container">

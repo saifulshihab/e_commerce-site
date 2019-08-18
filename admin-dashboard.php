@@ -18,7 +18,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Techhub Admin Dashboard</title>
+	<title>Admin Dashboard | Techhub</title>
 </head>
 <body>
 	
@@ -82,7 +82,7 @@
 	 						</div>
 						 
 	 					 
-	 					 <a href=""class="list-group-item"><i class="fas fa-cart-arrow-down"></i>Order</a> 	
+	 					 <a href="#order"class="list-group-item"><i class="fas fa-cart-arrow-down"></i>Order</a> 	
 	 				 <a href=""class="list-group-item"><i class="fas fa-sign-out-alt"></i>Logout</a> 
 	 				 </div>
 	 			</div>
@@ -197,6 +197,43 @@
 						    
 						</table>	
 					</section>
+					<section id="order" class="content-section-section">
+ 						<h3 id="content-header">Customer Order</h3>
+	 					<table>
+						    <tr>
+						    	 <th>Order ID</th>
+						         <th>Customer ID</th>			        
+						         <th>Customer Name</th>			        
+						         <th>Customer Phone</th>			        
+						         <th>Product ID</th>			        
+						         <th>Product Name</th>			        
+						         <th>Product Brand</th>			    						
+						         <th>Product Price</th>			        
+						         <th>Deliver Address</th>			        
+						         <th>Total Payment</th>			        
+						    </tr>
+						    <?php 
+	
+						    $query2 = "select * from  p_order";
+							$result2 = $crud->getData($query2);
+						        foreach($result2 as $res){
+						            echo"<tr>";
+						            echo "<td>".$res['id']."</td>";
+						            echo"<td>".$res['cid']."</td>";
+						            echo"<td>".$res['cname']."</td>";
+						            echo"<td>".$res['cphn']."</td>";
+						            echo"<td>".$res['pid']."</td>";
+						            echo"<td>".$res['pname']."</td>";
+						            echo"<td>".$res['pbrand']."</td>";	
+						            echo"<td>".$res['pprice']."</td>";
+						            echo"<td>".$res['deliver_address']."</td>";
+						            echo"<td>".$res['total_payment']."</td>";
+						            echo"</tr>";
+						        }			    
+						    ?>
+						    
+						</table>	
+ 					</section>
  
 
 	 			</div>

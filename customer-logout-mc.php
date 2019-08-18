@@ -5,6 +5,6 @@ $_SESSION = array();
 
 session_destroy();
 if(!isset($_SESSION['customer_email'])){
-	header('location:index.php');
+	header('location:main_cart.php');
 }
 ?>

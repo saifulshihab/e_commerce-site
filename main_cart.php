@@ -4,8 +4,10 @@ include_once 'Crud.php';
 
 $crud = new Crud();
  
+ session_start();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +18,7 @@ $crud = new Crud();
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/main_cart.css">
-	<link rel="icon" href="image/favicon.png">
+	<link rel="icon" href="images/favicon.png">
 </head>
 <body> 
 
@@ -38,18 +40,28 @@ $crud = new Crud();
 					</div>
 				</div>
 				<div class="col-3">
-					 <div class="top-login-reg float-left">
-					 	<a href="main_cart.php"><i class="fas fa-cart-plus"></i></a>
+					 <div class="top-login-reg float-left">					 
+					 	 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
-					 			 <li><a href="customer-login.php">Login</a></li>
+					 			 <li><a style="cursor: pointer;color: 
+					 			 rgba(0,0,0,.5)" data-toggle="modal" data-target="#customer_login">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
-					 	 	</ul>				 
+					 	 	</ul>
+					 	 	<div class="dropdown">
+					 	 		<a class="ma dropdown-toggle" href="customer-dashboard.php" title="My Account" data-toggle="dropdown"><i class="fas fa-user-circle text-secondary"></i></a>		 	
+					 	 		<ul class="dropdown-menu">
+							      <li><a href="customer-dashboard.php">My Account</a></li> <br>
+							      <li><a href="customer-logout-mc.php">Logout</a></li>
+							    </ul>			 
+					 	 </div>
 				 	 </div>
 				</div>
 			</div>
 		</div>
-	  
+
+		<!--custoer login modal--> 
+		
 <!--Navbar-->
 
 		
@@ -62,31 +74,31 @@ $crud = new Crud();
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item ">
-		        <a class="nav-link" href="#mobile">Mobile & Tabs<span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="index.php#mobile">Mobile & Tabs<span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#laptop">Laptop </a>
+		        <a class="nav-link" href="index.php#laptop">Laptop </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Desktop & PC </a>
+		        <a class="nav-link" href="index.php#cpu">Desktop & PC </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#camera">Camera </a>
+		        <a class="nav-link" href="index.php#camera">Camera </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#watch">Watch</a>
+		        <a class="nav-link" href="index.php#watch">Watch</a>
 		      </li>		      
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Speaker </a>
+		        <a class="nav-link" href="index.php#">Speaker </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">RAM </a>
+		        <a class="nav-link" href="index.php#">RAM </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Router </a>
+		        <a class="nav-link" href="index.php#">Router </a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Software & Antivirus</a>
+		        <a class="nav-link" href="index.php#">Software & Antivirus</a>
 		      </li>
 		      
 		    </ul>
@@ -95,46 +107,22 @@ $crud = new Crud();
 		</nav>
 	   
 	</div>	
-<div class="clearfix"></div>
 
 
 	<!--Content-->
-
-	<div class="cart_data_wrapepr">
+	
+	<div class="content_wrapper"> 
 		<div class="container">
-			<div class="cart_data" style="margin-top:200px">
-				<div class="title">
-				<h3 >Your shopping cart</h3>
-				</div>
-				<table>
-					<tr>
-						<th>Product ID</th>
-						<th>Product Name</th>
-						<th>Product Brand</th>
-						<th>Product Catagory</th>
-						<th>Product Image</th>
-						<th>Product Price</th>
-						<th>Action</th>
-					</tr>
-					<?php 
-					$result =$crud->getData("select * from cart");
-						foreach ($result as $key => $res) {
-							echo "<tr>";
-							echo "<td>".$res['p_id']."<?td>";
-							echo "<td>".$res['p_name']."<?td>";
-							echo "<td>".$res['p_brand']."<?td>";
-							echo "<td>".$res['p_catagory']."<?td>";
-							echo "<td><img width='150%' src='".$res['p_image']."'/></td>"; 
-							echo "<td>".$res['p_price']."<?td>";
-							 echo"<td><button id=".$res['id']." class='edit btn btn-sm btn-success'><i class='fas fa-shopping-bag'style='margin-right:1px;margin-left:-2px'></i>Buy Now</button></td>";
-							echo "</tr>";
-						}
-					?>
-				</table>
-				<button class="btn btn-warning btn-md btn-block" style="margin-left: 60px;margin-top: 15px">Clear cart</button>
-			</div>
+		<div class="maincart_data_wrapper" style="margin-top:150px"> 	 
+		<div class="title text-center" >
+			 <h3>Your Shopping Cart</h3>
 		</div> 
+		</div>  
+			<div id="main_cart_data_show"></div>
+		</div>
 	</div>
+	
+	
 
 
 
@@ -215,20 +203,69 @@ $crud = new Crud();
 			 </div>
 			 </div>
 			 
-			 </footer>
- 
+			 </footer>			
+
+	 		<div class="modal fade" id="customer_login">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4>Customer Login</h4>
+						</div>
+						<div class="modal-body">
+							<form action="main_cart.php" method="POST">
+							<div class="form-group">
+								<input class="form-control" type="text" name="email" placeholder="Your email" required>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="password" name="password" placeholder="Your password" required>
+							</div>
+							<input type="submit" name="customer_login" class="btn btn-sm btn-info float-right" value="Login" >
+							<input type="button" class="btn btn-sm btn-danger float-right" data-dismiss="modal" value="Close" style="margin-right: 5px">											
+							
+						</form>						
+						</div>
+					</div>
+				</div>
+			</div>
+	  
  
 	<!-- JavaScript Files -->
 	 <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
 
- 	<script type="text/Javascript">
- 		$('.carousel').carousel({
- 			interval: 3000 
- 		})
+ 	<script type="text/javascript">
+ 		 $(document).ready(function(){
+			 $.get('main_cart_view.php',function(data){
+					$("#main_cart_data_show").html(data);
+			 })
+			 
+		 })
  	</script>
+<?php 
+	if(isset($_POST['customer_login'])){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
+		 $query = "select * from customer_registration where customer_email='$email' AND customer_password='$password'";
+		$result= $crud->getData($query);
+		
+		if($result) {
+			foreach($result as $res){
+				$email = $res['customer_email'];
+				$name = $res['customer_name'];
+			}
+			$_SESSION['customer_email'] = $email;
+			$_SESSION['customer_name'] = $name;
+			header("Location:main_cart.php");
+		}else{
+			echo '<script type="text/javascript">';
+			echo 'alert("Incorrect email or password! Try again.")';
+			echo '</script>';
+		}
+	}
 
+?>
 
 
 </body>

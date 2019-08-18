@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login Form</title>
-	<link rel="icon" href="image/favicon.png">
+	<link rel="icon" href="images/favicon.png">
 	<link rel="stylesheet" href="css/admin-login.css">
 	
 </head>
@@ -47,7 +47,13 @@ if(isset($_POST['login'])){
 		$_SESSION['customer_name'] = $name;
 		header("Location:customer-dashboard.php");
 	}else{
-		echo "Incorrect Email or Password";
+		echo '<span style="color:red;display: block;
+			    text-align: center;
+			    position: absolute;
+			    top: 550px;
+			    right: 0;
+			    bottom: 0;
+			    left: 0;">Incorrect Email or Password</span>';
 	}
 }
 

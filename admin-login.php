@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login Form</title>
-	<link rel="icon" href="image/favicon.png">
+	<link rel="icon" href="images/favicon.png">
 	<link rel="stylesheet" href="css/admin-login.css">
 	
 </head>
