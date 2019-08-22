@@ -24,19 +24,12 @@
   
   
 }
-
-.top-login-reg .dropdown-toggle::after {
-	display: none !important;
-  
-}
+ 
 .top-login-reg .ma{
 	margin-top: -28px;
 }
-.dropdown:hover .dropdown-menu {
-    display: inline-block;
-    margin-top: 10px;
-    margin-left: 250px;
- }
- .dropdown-menu ul{
- 	padding: 0;
- }
+.top-login-reg .dropdown-content {
+ 
+	top: 3px !important;
+}
+ 

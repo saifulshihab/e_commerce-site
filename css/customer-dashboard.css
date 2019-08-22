@@ -21,7 +21,7 @@
 #wishlist td,th {
 	border: 1px solid #dddddd;
 	text-align: center;
-  padding: 2px 40px;
+  padding: 2px 39px;
 }
  
 #order tr:nth-child(even), #wishlist tr:nth-child(even){

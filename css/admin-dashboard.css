@@ -117,6 +117,10 @@ i{
   text-align: center;
   padding: 2px 15px;
 }
+#order th{
+   
+  padding: 2px 15px !important;
+}
  
 #product_list tr:nth-child(even) , #customer-list tr:nth-child(even), #myaccount tr:nth-child(even), #order tr:nth-child(even) {
   background-color: #dddddd;
