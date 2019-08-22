@@ -1,0 +1,127 @@
+body{
+	margin: 0;
+	padding:0;
+}
+
+.head{
+	height: 70px;
+	background: #715CA6;
+	padding-right: 0;
+	padding-left: 0;
+}
+.head2{
+	background: #128266;
+}
+
+.head .title h1{
+	font-weight: bold !important;
+	color: white;
+	margin-top: 9px;
+}
+.head .logo{
+	margin: 12px 30px;
+}
+.head .logout{
+	margin: 18px 0px;
+}
+.head .logout i{
+	margin-right: 4px;  
+}
+
+.content{
+	margin-top:70px ;
+}
+.sidebar{
+	padding-right: 0;
+	background: #1D2C33;
+	z-index: 1;
+	 width: 290px;
+	height: 100%;
+	position: fixed;
+}
+ 
+#main-menu a{
+	border: none;
+	display: block;
+	padding:15px 50px;
+	text-decoration: none;
+	font-size: 15px;
+	background: none;
+	color: #aaa;
+}
+#main-menu a:hover{
+	background: #334C57;
+}
+ #sub-menu{
+ 	background: rgb(32, 32, 32) none repeat scroll 0% 0%;
+ }
+
+i{
+	margin-right: 15px;  
+}
+ 
+.content{
+	padding-left: 0;
+	padding-right: 0;
+}
+.row{
+	margin-right:0;	
+}
+.content_manage {
+	padding: 100px;
+	margin-top: -235px;
+}
+#content-header{
+	  
+	background: #5cc45c;
+	display: inline-block;
+	padding: 5px 50px;
+	border-radius: 20px 0px 20px 0px;
+	margin-bottom: 20px;
+}
+.content-section-section{
+	min-height: 100vh;
+	padding-top:6.5rem;
+}
+#add_product{
+
+}
+
+
+#product_list{
+	 
+}
+
+#product_list table, #customer-list table, #myaccount table, #order table {
+   
+  border-collapse: collapse;
+   
+}
+ #customer-list table, #myaccount table {
+   width: 96%;
+}
+#order table{
+	width: 70%;
+}
+
+#product_list td, th, #myaccount td, th, #customer-list td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 2px 55px;
+}
+#product_list td:last-child{
+  padding: 2px 0;
+}
+#order td, th{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 2px 15px;
+}
+#order th{
+   
+  padding: 2px 15px !important;
+}
+ 
+#product_list tr:nth-child(even) , #customer-list tr:nth-child(even), #myaccount tr:nth-child(even), #order tr:nth-child(even) {
+  background-color: #dddddd;
+}

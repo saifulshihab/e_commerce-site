@@ -1,0 +1,38 @@
+.product-full-view{
+	margin-top: 100px !important;
+}
+.product-full-view table{
+	 
+}
+.product-full-view table tr{
+	display: block;
+	margin-bottom: 20px;	 
+}
+.demo{
+	padding-left: 20px;
+	background: yellow;
+}
+.product-full-view table th{
+	 width: 150px;
+	 
+}
+
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  width: 70px;
+  height: 70px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 450px;
+  height: 450px;
+}

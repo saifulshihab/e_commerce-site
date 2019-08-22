@@ -1,0 +1,35 @@
+.title{
+	display: block;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.title h3{
+	font-weight: bold;
+}
+.cart_data table {
+   
+  border-collapse: collapse;
+   width: 100%;
+}
+ 
+.cart_data td, th {
+  
+  text-align: center;
+  padding: 2px 48px;
+}
+.cart_data th {
+	background: #e9ecef;
+}
+.cart_data td:last-child{
+  
+  
+}
+ 
+.top-login-reg .ma{
+	margin-top: -28px;
+}
+.top-login-reg .dropdown-content {
+ 
+	top: 3px !important;
+}
+ 
