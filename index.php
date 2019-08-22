@@ -58,7 +58,15 @@ $cpuResult = $crud->getData($cpuQuery);
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>
-					 	 <a class="ma" href="customer-dashboard.php" title="My Account" data-toggle="tooltip"><i class="fas fa-user-circle text-secondary"></i></a>				 
+					 	 	<div class="dropdown">
+					 	 		<a class="ma drpbtn" href="customer-dashboard.php"><i class="fas fa-user-circle text-secondary"></i></a>
+					 	 		<div class="dropdown-content">
+								    <a href="customer-dashboard.php">My Account</a>
+								    <a href="#">Settings</a>
+								    <a href="#">Help & Support</a>
+								    <a href="customer-logout.php">Logout</a>
+							    </div>
+					 	 	</div>			 
 				 	 </div>
 				</div>
 			</div>

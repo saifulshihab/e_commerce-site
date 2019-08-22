@@ -48,11 +48,19 @@
 					 		<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
 					 			 <li><a style="cursor: pointer;color: 
-					 			 rgba(0,0,0,.5)" data-toggle="modal" data-target="#customer_login">Login</a></li>
+					 			 black" data-toggle="modal" data-target="#customer_login">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>
-					 	 <a class="ma" href="customer-dashboard.php" title="My Account" data-toggle="tooltip"><i class="fas fa-user-circle text-secondary"></i></a>				 
+					 	 <div class="dropdown">
+					 	 		<a class="ma drpbtn" href="customer-dashboard.php"><i class="fas fa-user-circle text-secondary"></i></a>
+					 	 		<div class="dropdown-content">
+								    <a href="customer-dashboard.php">My Account</a>
+								    <a href="#">Settings</a>
+								    <a href="#">Help & Support</a>
+								    <a href="customer-logout.php">Logout</a>
+							    </div>
+					 	 	</div>			 
 				 	 </div>
 				</div>
 			</div>
@@ -163,7 +171,7 @@
  								foreach ($result as $key => $res) {
  									echo "<button id=".$_GET['id']." class='btn btn-sm btn-primary add_cart_btn' style='margin-right:3px'><i class='fas fa-cart-plus' style='margin-right: 4px'></i>Add Cart</button>";
  									echo "<button id=".$_GET['id']." class='btn btn-sm btn-success buy_now_btn' style='margin-right: 3px' data-toggle='modal' data-target='#buynowmodal' ><i class='fas fa-shopping-bag'></i>Buy Now</button>";
- 									echo '<button id='.$_GET['id'].' class="btn btn-sm btn-dark wishlist_btn" title="Login Required" data-toggle="popover" data-content="You have to login to your account for add anything to your wishlist."><i class="fas fa-heart"></i>Add Wishlist</button>';
+ 									echo '<button id='.$_GET['id'].' class="btn btn-sm btn-dark wishlist_btn" title="Login Required" data-toggle="popover" data-content="You have to login to your account for add anything to your wishlist."><i class="fas fa-heart" style="color:#ff65df"></i>Add Wishlist</button>';
  								}
  							?>
  		
@@ -340,15 +348,11 @@
  				$.ajax({
  					url:"buy_now.php",
  					type:"POST",
+ 				 
  					data:{id:id},
  					success:function(data){
- 						 
- 							$('#congomsgshow').hide();
-							 	$.get('buy_now.php',function(data){
-									$('#buynow_product_show').html(data);
-							})		
- 						 
- 						
+ 						$('#congomsgshow').hide();
+						$('#buynow_product_show').html(data);	
 					 }
 					
  				})					

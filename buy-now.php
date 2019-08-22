@@ -1,12 +1,17 @@
 <?php
 session_start(); 
-include_once 'Crud.php';
 
+include_once 'Crud.php';
 $crud = new Crud();
- 
-$result =$crud->getData("select * from cart");
 
 if(isset($_SESSION['customer_email'])){
+
+	$id = $_POST['id'];
+	 
+	$query = "select * from product where id=$id";
+ 
+	$result = $crud->getData($query);
+
 	$email = $_SESSION['customer_email'];
 	 $q="select * from customer_registration where customer_email='$email'"; 
 	 $result2=$crud->getData($q);
@@ -14,11 +19,7 @@ if(isset($_SESSION['customer_email'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<style type="text/css">
-		table{
-			width:100% !important;
-		}
-	</style>
+ 	<link rel="stylesheet" href="css/main_cart.css">
 </head>
 <body> 
 	
@@ -38,17 +39,17 @@ if(isset($_SESSION['customer_email'])){
 					
 						foreach ($result as $key => $res) {							
 							echo "<tr>";
-							echo "<td>".$res['p_id']."</td>";
-							echo "<td>".$res['p_name']."</td>";
-							echo "<td>".$res['p_brand']."</td>";							
-							echo "<td><img width='15%' src='".$res['p_image']."'/></td>"; 
-							echo "<td>".$res['p_price']."</td>";						
+							echo "<td>".$res['id']."</td>";
+							echo "<td>".$res['product_name']."</td>";
+							echo "<td>".$res['product_brand']."</td>";							
+							echo "<td><img width='15%' src='".$res['product_image']."'/></td>"; 
+							echo "<td>".$res['product_price']."</td>";						
 							echo "</tr>";
 							 
 						}
 						$p=0;
 						foreach ($result as $res) {
-							$p=$p+(int)$res['p_price'];
+							$p=$p+(int)$res['product_price'];
 						}
 
 						 echo "</table>";
@@ -87,16 +88,16 @@ if(isset($_SESSION['customer_email'])){
  		 	var cid = "<?php foreach($result2 as $res){echo $res['customer_id'];} ?>";
 			var cname = "<?php foreach($result2 as $res){echo $res['customer_name'];} ?>";
 			var cphn = "<?php foreach($result2 as $res){echo $res['customer_phone'];} ?>";
-			var pid = "<?php foreach($result as $res){echo $res['p_id'];echo ", ";} ?>";
-			var pname ="<?php foreach($result as $res){echo $res['p_name'];echo ", ";} ?>";
-			var pbrand = "<?php foreach($result as $res){echo $res['p_brand'];echo ", ";} ?>";
-			var pprice = "<?php foreach($result as $res){echo $res['p_price'];echo ", ";} ?>";
+			var pid = "<?php foreach($result as $res){echo $res['id'];echo ", ";} ?>";
+			var pname ="<?php foreach($result as $res){echo $res['product_name'];echo ", ";} ?>";
+			var pbrand = "<?php foreach($result as $res){echo $res['product_brand'];echo ", ";} ?>";
+			var pprice = "<?php foreach($result as $res){echo $res['product_price'];echo ", ";} ?>";
 
 		 
 
 			var t_pay = "<?php $p=0;
 						foreach ($result as $res) {
-							 $p=$p+(int)$res['p_price'];
+							 $p=$p+(int)$res['product_price'];
 						} echo $p ?>";
 			var daddr = $('#addr').val();
 			if(daddr==""){
@@ -108,19 +109,13 @@ if(isset($_SESSION['customer_email'])){
 				data:{c_id:cid,c_name:cname, c_phn:cphn, p_id:pid, p_name:pname, p_brand:pbrand,p_price:pprice,d_addr:daddr, total_payment:t_pay},
 				success:function(data){
 					if(data=="success"){
-						$('#chkout_product_show').hide();
-						
-
-						$.ajax({
-							 url:"main_cart_product_alldelete.php",
-							type:"POST",
-							success:function(data){						
-								if(data=="success"){									 
-								}						
-							}
-						 })
-
+						$('#buynow_product_show').hide();
+	
 						$('#congomsgshow').slideDown();
+
+						$.get('customer-order-show.php', function(data){
+							$('#customer_order_show').html(data);
+						})
 
 					}
 				}

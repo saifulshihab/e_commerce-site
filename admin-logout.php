@@ -1,10 +1,9 @@
 <?php
+
 session_start();
 
-$_SESSION = array();
-
-session_destroy();
-if(!isset($_SESSION['email'])){
+if(isset($_SESSION['email'])){
+	unset($_SESSION['email']);
 	header('location:admin-login.php');
 }
 ?>

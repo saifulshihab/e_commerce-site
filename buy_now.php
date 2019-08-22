@@ -19,11 +19,7 @@ if(isset($_SESSION['customer_email'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<style type="text/css">
-		table{
-			width:100% !important;
-		}
-	</style>
+ 	<link rel="stylesheet" href="css/main_cart.css">
 </head>
 <body> 
 	
@@ -63,7 +59,7 @@ if(isset($_SESSION['customer_email'])){
 						 echo '</div>';	
 
 						 echo '<div class="form-group">';
-						 echo '<label for=""><strong>Your Address</strong></label>';
+						 echo '<h4><strong>Your Address</strong></h4>';
 						 echo '<textarea id="addr" type="text" name="" class="form-control" required></textarea>';
 						 echo '</div>';
 
@@ -115,7 +111,7 @@ if(isset($_SESSION['customer_email'])){
 					if(data=="success"){
 						$('#buynow_product_show').hide();
 	
-						$('#congomsgshow').show();
+						$('#congomsgshow').slideDown();
 
 					}
 				}

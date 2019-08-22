@@ -44,17 +44,19 @@ $crud = new Crud();
 					 	 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
 					 			 <li><a style="cursor: pointer;color: 
-					 			 rgba(0,0,0,.5)" data-toggle="modal" data-target="#customer_login">Login</a></li>
+					 			 black" data-toggle="modal" data-target="#customer_login">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>
-					 	 	<div class="dropdown">
-					 	 		<a class="ma dropdown-toggle" href="customer-dashboard.php" title="My Account" data-toggle="dropdown"><i class="fas fa-user-circle text-secondary"></i></a>		 	
-					 	 		<ul class="dropdown-menu">
-							      <li><a href="customer-dashboard.php">My Account</a></li> <br>
-							      <li><a href="customer-logout-mc.php">Logout</a></li>
-							    </ul>			 
-					 	 </div>
+					 	 	 <div class="dropdown">
+					 	 		<a class="ma drpbtn" href="customer-dashboard.php"><i class="fas fa-user-circle text-secondary"></i></a>
+					 	 		<div class="dropdown-content">
+								    <a href="customer-dashboard.php">My Account</a>
+								    <a href="#">Settings</a>
+								    <a href="#">Help & Support</a>
+								    <a href="customer-logout-mc.php">Logout</a>
+							    </div>
+					 	 	</div>
 				 	 </div>
 				</div>
 			</div>

@@ -50,10 +50,10 @@ if(isset($_POST['login'])){
 		echo '<span style="color:red;display: block;
 			    text-align: center;
 			    position: absolute;
-			    top: 550px;
+			    top: 69%;
 			    right: 0;
 			    bottom: 0;
-			    left: 0;">Incorrect Email or Password</span>';
+			    left: 0;">Incorrect Email or Password!</span>';
 	}
 }
 
