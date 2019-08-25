@@ -3,11 +3,23 @@
 include_once 'Crud.php';
 
 $crud = new Crud();
- 
- session_start();
+
+$cameraQuery = "Select * from product where product_catagory='Camera'";
+$cameraResult = $crud->getData($cameraQuery);
+
+$watchQuery = "Select * from product where product_catagory='Watch'";
+$watchResult = $crud->getData($watchQuery);
+
+$mobileQuery = "Select * from product where product_catagory='Mobile & Tabs'";
+$mobileResult = $crud->getData($mobileQuery);
+
+$laptopQuery = "Select * from product where product_catagory='Laptop'";
+$laptopResult = $crud->getData($laptopQuery);
+
+$cpuQuery = "Select * from product where product_catagory='Desktop & PC'";
+$cpuResult = $crud->getData($cpuQuery);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +28,8 @@ $crud = new Crud();
  
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">	
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/main_cart.css">
 	<link rel="icon" href="images/favicon.png">
 </head>
 <body> 
@@ -34,44 +46,38 @@ $crud = new Crud();
 				<div class="col-6 text-center">
 					<div class="top-search-box">
 						<form action="search_result_show.php" method="POST">
-							<input type="text" name="serch-item" id="serch-item" placeholder="What are you looking for?" required>
-							 <button class="button" type="submit" name="submit" title="search">
+							<input type="text" name="serch-item" id="serch-item" placeholder="What are you looking for?" >
+							 <button class="button" type="submit" title="search">
 							 	<span><img src="images/src.png" alt=""></span>
 							 </button>
 						 </form>
 					</div>
-					<div class="list-group" id="show_search_list"></div>	
+					<div class="list-group" id="show_search_list">
+						 
+					</div>
 				</div>
 				<div class="col-3">
-					 <div class="top-login-reg float-left">					 
-					 	 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
+					 <div class="top-login-reg float-left">
+					 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
-					 			 <li><a style="cursor: pointer;color: 
-					 			 black" data-toggle="modal" data-target="#customer_login">Login</a></li>
+					 			 <li><a href="customer-login.php">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>
-					 	 	 <div class="dropdown">
+					 	 	<div class="dropdown">
 					 	 		<a class="ma drpbtn" href="customer-dashboard.php"><i class="fas fa-user-circle text-secondary"></i></a>
 					 	 		<div class="dropdown-content">
 								    <a href="customer-dashboard.php">My Account</a>
 								    <a href="#">Settings</a>
 								    <a href="#">Help & Support</a>
-								    <a href="customer-logout-mc.php">Logout</a>
+								    <a href="customer-logout.php">Logout</a>
 							    </div>
-					 	 	</div>
+					 	 	</div>			 
 				 	 </div>
 				</div>
 			</div>
 		</div>
-
-		<!--custoer login modal--> 
-		
-<!--Navbar-->
-
-		
-	  
-		 <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+		  <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
 		  <div class="container">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
@@ -110,35 +116,78 @@ $crud = new Crud();
 		  </div>
 		  </div>
 		</nav>
-	   
-	</div>	
-
-
-	<!--Content-->
-	
-	<div class="content_wrapper" style="margin-bottom: 144px">  
-		<div class="container">
-		<div class="maincart_data_wrapper" style="margin-top:150px"> 	 
-		<div class="title text-center" >
-			 <h3>Your Shopping Cart</h3>
-		</div> 
-		</div>  
-			<div id="main_cart_data_show"></div>
 		</div>
-	</div>
-	
-	
 
+		<!--Middle Content-->
+		<div class="srcresultshow" style="margin-bottom: 641px;height: 50vh;margin-top: 144px;">
+			<div class="container">
 
-
-
+			<?php 
+				if(isset($_POST['submit'])){
+					$data =$_POST['serch-item'];
+					$query = "select * from product where product_name like '%$data%'";					
+					$result = $crud->getData($query);
+					if(!isset($result)){
+						echo "<p>No result found</p>";
+					}
+					foreach ($result as $res) {
+						 
+									echo "<li style='list-style:none;display:block;width:204px;float:left;margin-right:10px'>";
+									echo "<div style='height:315px'>";
+								    echo "<div style='height:217px;margin-bottom:10px'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>";
+								    echo "</div>";
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+								    echo "<div style='height:63px;overflow:hidden;margin-bottom:5px'>"; 
+									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
+									echo "</div>";
+									echo "</a>";
+									echo "<div style='height:30px'>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</div>";
+									echo "</div>";
+									echo "</li>";	
+						 
+				 
+					}
+					$query2 = "select * from product where product_catagory like '%$data%'";					
+					$result2 = $crud->getData($query);
+					foreach ($result2 as $res) {
+						 
+									echo "<li style='list-style:none;display:block;width:204px;float:left;margin-right:10px'>";
+									echo "<div style='height:315px'>";
+								    echo "<div style='height:217px;margin-bottom:10px'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>";
+								    echo "</div>";
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+								    echo "<div style='height:63px;overflow:hidden;margin-bottom:5px'>"; 
+									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
+									echo "</div>";
+									echo "</a>";
+									echo "<div style='height:30px'>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</div>";
+									echo "</div>";
+									echo "</li>";	
+						 
+				 
+					}
+	 
+				}
+				
+				
+			?>
+			</div>
+		</div>
+<div class="clearfix"></div>
+  
 		<!--Footer-->
 		
 		<footer class="bg-dark mt-5" style="height: auto;">
 			
 			<div class="footer-control p-5">
 				<div class="container">
-				<div class="row">
+				<div class="row mb-3">
 					<div class="col-4">
 						 <div class="general">
 						 	<h5>General</h5>
@@ -173,7 +222,7 @@ $crud = new Crud();
 							<h5 style="color: white">Hire Web Developer</h5>
 							<p style="color: #ddd">Saiful Islam</p><br>
 							<span style="color: #ddd">+8801782455150</span><br>
-							<span style="color: #ddd">mdshihab856@gmail.com</span>
+							<span style="color: #ddd">shihab@gmail.com</span>
 						</div>
 					</div>
 				</div>	
@@ -208,39 +257,51 @@ $crud = new Crud();
 			 </div>
 			 </div>
 			 
-			 </footer>			
-
-	 		<div class="modal fade" id="customer_login">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4>Customer Login</h4>
-						</div>
-						<div class="modal-body">
-							<form action="main_cart.php" method="POST">
-							<div class="form-group">
-								<input class="form-control" type="text" name="email" placeholder="Your email" required>
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="password" name="password" placeholder="Your password" required>
-							</div>
-							<input type="submit" name="customer_login" class="btn btn-sm btn-info float-right" value="Login" >
-							<input type="button" class="btn btn-sm btn-danger float-right" data-dismiss="modal" value="Close" style="margin-right: 5px">											
-							
-						</form>						
-						</div>
-					</div>
-				</div>
-			</div>
-	  
+			 </footer>
  
+	  
 	<!-- JavaScript Files -->
 	 <script src="js/jquery-3.4.1.min.js"></script>
+	  <!-- Flexslider jQuery -->
+	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
+	  <script defer src="js/jquery.flexslider.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
 
  	<script type="text/javascript">
- 		 $(document).ready(function(){
+ 		$(document).ready(function(){
+
+ 			//Search Code
+ 			$("#serch-item").keyup(function(){
+ 				var searchText = $(this).val();
+ 				if(searchText != ''){
+ 					$.ajax({
+ 						url:'search_result_show.php',
+ 						type:'post',
+ 						data:{srctxt:searchText},
+ 						success:function(response){
+ 						 	$('#show_search_list').html(response)
+ 						}
+ 					})
+ 				}else{
+ 					$('#show_search_list').html('');
+ 				}
+ 			})
+ 			$(document).on('click','a',function(){
+ 				$("#serch-item").val($(this).text());
+ 				$('#show_search_list').html('');
+ 			})
+
+
+
+
+
+	 		$('.carousel').carousel({
+	 			interval: 3000 
+	 		})
+
+	 		$("[data-toggle='tooltip']").tooltip();
 
  			//Search Code
  			$("#serch-item").keyup(function(){
@@ -263,36 +324,24 @@ $crud = new Crud();
  			});
  			
 		//Search Code
-			 $.get('main_cart_view.php',function(data){
-					$("#main_cart_data_show").html(data);
-			 })
-			 
-		 })
- 	</script>
-<?php 
-	if(isset($_POST['customer_login'])){
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		
-		 $query = "select * from customer_registration where customer_email='$email' AND customer_password='$password'";
-		$result= $crud->getData($query);
-		
-		if($result) {
-			foreach($result as $res){
-				$email = $res['customer_email'];
-				$name = $res['customer_name'];
-			}
-			$_SESSION['customer_email'] = $email;
-			$_SESSION['customer_name'] = $name;
-			header("Location:main_cart.php");
-		}else{
-			echo '<script type="text/javascript">';
-			echo 'alert("Incorrect email or password! Try again.")';
-			echo '</script>';
-		}
-	}
+ 		})	
+	  $(function(){
+	      SyntaxHighlighter.all();
+	    });
+	    $(window).load(function(){
+	      $('.flexslider').flexslider({
+	        animation: "slide",
+	        slideshowSpeed: 100000,
+	        start: function(slider){
+	          $('body').removeClass('loading');
+	        }
+      });
+    });
+ 		
 
-?>
+ 	</script>
+
+
 
 
 </body>

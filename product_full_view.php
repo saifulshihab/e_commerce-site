@@ -37,11 +37,14 @@
 				</div>
 				<div class="col-6 text-center">
 					<div class="top-search-box">
-						<input type="text" name="serch-item" placeholder="What are you looking for?" >
-						 <button class="button" type="submit" title="search">
-						 	<span><img src="images/src.png" alt=""></span>
-						 </button>
+						<form action="search_result_show.php" method="POST">
+							<input type="text" name="serch-item" id="serch-item" placeholder="What are you looking for?" required>
+							 <button class="button" type="submit" name="submit" title="search">
+							 	<span><img src="images/src.png" alt=""></span>
+							 </button>
+						 </form>
 					</div>
+					<div class="list-group" id="show_search_list"></div>
 				</div>
 				<div class="col-3">
 					 <div class="top-login-reg float-left">					 
@@ -228,7 +231,7 @@
 							<h5 style="color: white">Hire Web Developer</h5>
 							<p style="color: #ddd">Saiful Islam</p><br>
 							<span style="color: #ddd">+8801782455150</span><br>
-							<span style="color: #ddd">shihab@gmail.com</span>
+							<span style="color: #ddd">mdshihab856@gmail.com</span>
 						</div>
 					</div>
 				</div>	
@@ -249,7 +252,7 @@
 					<div class="col pt-1 text-left" style="border-left: 1px solid #0d161a">
 						<div class="social-icon">
 							<ul class="fa-stack fa-4x">
-								<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+								<li><a href="https://www.facebook.com/isishihab" target="_blank"><i class="fab fa-facebook"></i></a></li>
 								<li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
 								<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
 								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
@@ -362,6 +365,29 @@
  			$('[data-toggle="popover"]').popover({
  				trigger:'hover'
  			});
+
+
+ 			//Search Code
+ 			$("#serch-item").keyup(function(){
+ 				var searchText = $(this).val();
+ 				if(searchText != ''){
+ 					$.ajax({
+ 						url:'get_search_result.php',
+ 						type:'post',
+ 						data:{srctxt:searchText},
+ 						success:function(response){
+ 						 	$('#show_search_list').html(response)
+ 						}
+ 					})
+ 				}else{
+ 					$('#show_search_list').html('');
+ 				}
+ 			})
+ 			$(document).on('click','a',function(){
+ 				$("#serch-item").val($(this).text()); 				 
+ 			});
+ 			
+		//Search Code
  		})
 function imageZoom(imgID, resultID) {
   var img, lens, result, cx, cy;

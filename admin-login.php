@@ -45,7 +45,7 @@ if(isset($_POST['login'])){
 		}
 		$_SESSION['email'] = $email;
 		$_SESSION['name'] = $name;
-		header("Location:admin-dashboard.php");
+		header("Location:admin.php");
 	}else{
 		echo "Incorrect Email or Password";
 	}

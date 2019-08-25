@@ -3,22 +3,24 @@
 include_once 'Crud.php';
 
 $crud = new Crud();
- 
- session_start();
+
+$cameraQuery = "Select * from product where product_catagory='Camera'";
+$cameraResult = $crud->getData($cameraQuery);
+
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>	
 	<meta charset="UTF-8">
 	<title>Tech Hub</title>
  
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">	
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/main_cart.css">
+	<link rel="stylesheet" href="css/single_page_product.css">
 	<link rel="icon" href="images/favicon.png">
+ 
 </head>
 <body> 
 
@@ -33,40 +35,34 @@ $crud = new Crud();
 				</div>
 				<div class="col-6 text-center">
 					<div class="top-search-box">
-						<form action="search_result_show.php" method="POST">
-							<input type="text" name="serch-item" id="serch-item" placeholder="What are you looking for?" required>
-							 <button class="button" type="submit" name="submit" title="search">
-							 	<span><img src="images/src.png" alt=""></span>
-							 </button>
-						 </form>
+						<input type="text" name="serch-item" placeholder="What are you looking for?" >
+						 <button class="button" type="submit" title="search">
+						 	<span><img src="images/src.png" alt=""></span>
+						 </button>
 					</div>
-					<div class="list-group" id="show_search_list"></div>	
 				</div>
 				<div class="col-3">
-					 <div class="top-login-reg float-left">					 
-					 	 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
+					 <div class="top-login-reg float-left">
+					 	<a href="main_cart.php" title="Your shopping cart" data-toggle="tooltip" data-placement="left"><i class="fas fa-cart-plus"></i></a>
 					 		<ul>
-					 			 <li><a style="cursor: pointer;color: 
-					 			 black" data-toggle="modal" data-target="#customer_login">Login</a></li>
+					 			 <li><a href="customer-login.php">Login</a></li>
 					 			 <li><a href="customer-registration.php">Registration</a></li>
 					 			 <li><a href="">Contact</a></li>
 					 	 	</ul>
-					 	 	 <div class="dropdown">
+					 	 	<div class="dropdown">
 					 	 		<a class="ma drpbtn" href="customer-dashboard.php"><i class="fas fa-user-circle text-secondary"></i></a>
 					 	 		<div class="dropdown-content">
 								    <a href="customer-dashboard.php">My Account</a>
 								    <a href="#">Settings</a>
 								    <a href="#">Help & Support</a>
-								    <a href="customer-logout-mc.php">Logout</a>
+								    <a href="customer-logout.php">Logout</a>
 							    </div>
-					 	 	</div>
+					 	 	</div>			 
 				 	 </div>
 				</div>
 			</div>
 		</div>
-
-		<!--custoer login modal--> 
-		
+	  
 <!--Navbar-->
 
 		
@@ -112,26 +108,55 @@ $crud = new Crud();
 		</nav>
 	   
 	</div>	
-
-
-	<!--Content-->
-	
-	<div class="content_wrapper" style="margin-bottom: 144px">  
+<div class="clearfix"></div>
+ 
+		 <!--Mobile product view-->
+	<div id="product_wrapper">
 		<div class="container">
-		<div class="maincart_data_wrapper" style="margin-top:150px"> 	 
-		<div class="title text-center" >
-			 <h3>Your Shopping Cart</h3>
-		</div> 
-		</div>  
-			<div id="main_cart_data_show"></div>
+			<div id="mobile" style="width:100%;height: 100px"></div>
+			<div class="mt-5 camera-product">
+				<div class="row">
+					<div class="col">
+						<div class="header">
+							<h2>Camera</h2>	
+						</div>
+						 					
+					</div>
+				</div>				
+				<div class="row">
+					<div class="col">
+						<div class="product-view mt-4">
+						
+							<ul style="max-width:100%;height:315px">
+								 
+							<?php 
+								 foreach($cameraResult as $key=>$res){	 
+									echo "<li style='list-style:none;display:block;width:204px;float:left;margin-right:10px'>";
+									echo "<div style='height:315px'>";
+								    echo "<div style='height:217px;margin-bottom:10px'>";
+								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>";
+								    echo "</div>";
+								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
+								    echo "<div style='height:63px;overflow:hidden;margin-bottom:5px'>"; 
+									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
+									echo "</div>";
+									echo "</a>";
+									echo "<div style='height:30px'>";
+									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "</div>";
+									echo "</div>";
+									echo "</li>";	 
+								}
+							?>
+							 
+							</ul>
+													
+						</div>						
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	
-	
-
-
-
-
+ 	</div>
 		<!--Footer-->
 		
 		<footer class="bg-dark mt-5" style="height: auto;">
@@ -208,91 +233,26 @@ $crud = new Crud();
 			 </div>
 			 </div>
 			 
-			 </footer>			
-
-	 		<div class="modal fade" id="customer_login">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4>Customer Login</h4>
-						</div>
-						<div class="modal-body">
-							<form action="main_cart.php" method="POST">
-							<div class="form-group">
-								<input class="form-control" type="text" name="email" placeholder="Your email" required>
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="password" name="password" placeholder="Your password" required>
-							</div>
-							<input type="submit" name="customer_login" class="btn btn-sm btn-info float-right" value="Login" >
-							<input type="button" class="btn btn-sm btn-danger float-right" data-dismiss="modal" value="Close" style="margin-right: 5px">											
-							
-						</form>						
-						</div>
-					</div>
-				</div>
-			</div>
-	  
+			 </footer>
+ 
  
 	<!-- JavaScript Files -->
 	 <script src="js/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
 
- 	<script type="text/javascript">
- 		 $(document).ready(function(){
+ 	<script type="text/Javascript">
+ 		$(document).ready(function(){
+	 			$('.carousel').carousel({
+	 			interval: 3000 
+	 		})
 
- 			//Search Code
- 			$("#serch-item").keyup(function(){
- 				var searchText = $(this).val();
- 				if(searchText != ''){
- 					$.ajax({
- 						url:'get_search_result.php',
- 						type:'post',
- 						data:{srctxt:searchText},
- 						success:function(response){
- 						 	$('#show_search_list').html(response)
- 						}
- 					})
- 				}else{
- 					$('#show_search_list').html('');
- 				}
- 			})
- 			$(document).on('click','a',function(){
- 				$("#serch-item").val($(this).text()); 				 
- 			});
- 			
-		//Search Code
-			 $.get('main_cart_view.php',function(data){
-					$("#main_cart_data_show").html(data);
-			 })
-			 
-		 })
+	 		$("[data-toggle='tooltip']").tooltip();
+ 		})	
+ 		
+
  	</script>
-<?php 
-	if(isset($_POST['customer_login'])){
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-		
-		 $query = "select * from customer_registration where customer_email='$email' AND customer_password='$password'";
-		$result= $crud->getData($query);
-		
-		if($result) {
-			foreach($result as $res){
-				$email = $res['customer_email'];
-				$name = $res['customer_name'];
-			}
-			$_SESSION['customer_email'] = $email;
-			$_SESSION['customer_name'] = $name;
-			header("Location:main_cart.php");
-		}else{
-			echo '<script type="text/javascript">';
-			echo 'alert("Incorrect email or password! Try again.")';
-			echo '</script>';
-		}
-	}
 
-?>
 
 
 </body>
