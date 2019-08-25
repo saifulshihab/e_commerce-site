@@ -24,7 +24,7 @@ html{
 	margin-top: 5px;
 }
 .top-search-box  input[type="text"]{
-	width: 60%;
+	width: 75%;
 	background: none;
 	color:  #797979;
 	border: 1.5px solid #959595;
@@ -32,7 +32,7 @@ html{
 	padding: 5px 15px;
 }
 .top-search-box  input[type="text"]:focus{
-	width: 75%;
+	 
 	border: 1.5px solid #3df2da;
 	outline: none;
 	transition: all 0.3s ease;
@@ -143,65 +143,63 @@ i {
 #product_wrapper{
 	margin-top: 40px;
 }
-
-#mobile-product .header h2{
+.header{
+	text-align: center;
+}
+.header h2{
 	font-size: 20px;
 	display: inline-block;
-	padding: 5px 10px;
-	background: #ae9bf5;
+	padding: 5px 10px;	
 	margin-bottom: 0;
-	 
+	border-radius: 20px;
+	box-shadow: 0px 13px 15px -14px rgba(0,0,0,0.8);
+}
+#mobile-product .header h2{
+	background: #ff8e7a;
+}
+.header-border{
+	width: 100%;
+	height: 3px;
+	margin-top: -18px;
 }
 #mobile-product .header-border{
-	width: 100%;
-	height: 3px;
-	background: #ae9bf5;
+	background: #ff8e7a;
 }
 .laptop-product .header h2{
-	font-size: 20px;
-	display: inline-block;
-	padding: 5px 10px;
 	background:  #71daf0;
-	margin-bottom: 0;
-	 
 }
 .laptop-product .header-border{
-	width: 100%;
-	height: 3px;
 	background: #71daf0;
 }
 
 .camera-product .header h2{
-	font-size: 20px;
-	display: inline-block;
-	padding: 5px 10px;
 	background: #98e4b7;
-	margin-bottom: 0;
 	 
 }
 .camera-product .header-border{
-	width: 100%;
-	height: 3px;
 	background: #98e4b7;
 }
 
 #cpu-product .header h2{
-	font-size: 20px;
-	display: inline-block;
-	padding: 5px 10px;
-	background: #fd7d7d;
-	margin-bottom: 0;
+	background: #ffd006;
+	 
+}
+#watch-product .header-border{
+
+	background: #ffd006;
+}
+#watch-product .header h2{
+	background: #ffd006;
 	 
 }
 #cpu-product .header-border{
-	width: 100%;
-	height: 3px;
-	background: #fd7d7d;
+
+	background: #ffd006;
 }
 
 .product-view{
 	display: block;
-	height: 310px;
+	height: 315px;
 	overflow: hidden;
 }
 .footer-control{background: black}
@@ -291,3 +289,35 @@ i{border:none;}
 }
 
 .top-login-reg .dropdown:hover .dropdown-content {display: block;}
+ 
+.slides li{
+	   
+}
+ .flex-active-slide{
+ 	   width: 204px !important;
+ }
+ .flex_li{
+ 	 
+ }
+ .slides li{
+ 
+ }
+ #show_search_list{
+ 	position: absolute;
+ 	width: 71%;
+ 	 margin-left: 7.5%;
+ 	 
+ 	 z-index: 1; 
+ 	 border-radius: 1px;
+ }
+ #show_search_list .list-group-item{
+ padding: 0.10rem .5rem;
+ border: 0;	
+ background-color: #e8e8e8;
+ }
+ #show_search_list .list-group-item:hover{
+ background-color: #fff;
+ transition: 0.1s all ease;
+ }
+
+ 
