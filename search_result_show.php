@@ -150,28 +150,6 @@ $cpuResult = $crud->getData($cpuQuery);
 						 
 				 
 					}
-					$query2 = "select * from product where product_catagory like '%$data%'";					
-					$result2 = $crud->getData($query);
-					foreach ($result2 as $res) {
-						 
-									echo "<li style='list-style:none;display:block;width:204px;float:left;margin-right:10px'>";
-									echo "<div style='height:315px'>";
-								    echo "<div style='height:217px;margin-bottom:10px'>";
-								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>";
-								    echo "</div>";
-								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
-								    echo "<div style='height:63px;overflow:hidden;margin-bottom:5px'>"; 
-									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
-									echo "</div>";
-									echo "</a>";
-									echo "<div style='height:30px'>";
-									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
-									echo "</div>";
-									echo "</div>";
-									echo "</li>";	
-						 
-				 
-					}
 	 
 				}
 				
@@ -220,9 +198,9 @@ $cpuResult = $crud->getData($cpuQuery);
 					<div class="col-4">
 						<div class="devhire">
 							<h5 style="color: white">Hire Web Developer</h5>
-							<p style="color: #ddd">Saiful Islam</p><br>
-							<span style="color: #ddd">+8801782455150</span><br>
-							<span style="color: #ddd">shihab@gmail.com</span>
+							<p style="color: #ddd">Name goes here</p><br>
+							<span style="color: #ddd">Number</span><br>
+							<span style="color: #ddd">address</span>
 						</div>
 					</div>
 				</div>	
@@ -253,7 +231,7 @@ $cpuResult = $crud->getData($cpuQuery);
 				</div>
 			 </div>
 			 <div class="copyright text-center pt-2 ">
-			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank">sites.google.com/diu.edu.bd/saifulshihab</a></p>
+			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank"></a></p>
 			 </div>
 			 </div>
 			 

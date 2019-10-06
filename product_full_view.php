@@ -229,9 +229,9 @@
 					<div class="col-4">
 						<div class="devhire">
 							<h5 style="color: white">Hire Web Developer</h5>
-							<p style="color: #ddd">Saiful Islam</p><br>
-							<span style="color: #ddd">+8801782455150</span><br>
-							<span style="color: #ddd">mdshihab856@gmail.com</span>
+							<p style="color: #ddd">Name goes here</p><br>
+							<span style="color: #ddd">Number</span><br>
+							<span style="color: #ddd">address</span>
 						</div>
 					</div>
 				</div>	
@@ -262,7 +262,7 @@
 				</div>
 			 </div>
 			 <div class="copyright text-center pt-2 ">
-			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank">sites.google.com/diu.edu.bd/saifulshihab</a></p>
+			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank"> </a></p>
 			 </div>
 			 </div>
 			 

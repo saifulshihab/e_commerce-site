@@ -26,8 +26,24 @@ $crud = new crud();
 		 $p_price = $res['product_price'];
 	}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#product-edit-form{
+	height: 80vh;
+}
+
+	</style>
+</head>
+<body>
+	
+</body>
+</html>
  
-							<h3 id="content-header">Product Edit</h3>
+							
 							 <input type="text" id="uid" hidden value="<?php echo $id ?>">
 		 					<div class="form-group">
 		 						<label for=""><strong>Product Name</strong></label>
@@ -80,9 +96,9 @@ $crud = new crud();
 		 					</div>
 
 		 					 
-		 					<button class="btn btn-danger float-right" type="button" id="cancel" value="Cancel" onclick="$('#product-edit-form').slideUp();"><i class="fas fa-window-close mr-2"></i>Cancel</button>
+		 					<button class="btn btn-sm btn-danger float-right" type="button" id="cancel" value="Cancel" onclick="$('#product-edit-form').slideUp();"><i class="fas fa-window-close mr-2"></i>Cancel</button>
 		 					 
-		 					<button style="margin-right: 5px" class="btn btn-success float-right" type="button" name="update" id="update"><i class="fas fa-save mr-2"></i>Update</button>
+		 					<button style="margin-right: 5px" class="btn btn-sm btn-success float-right" type="button" name="update" id="update"><i class="fas fa-save mr-2"></i>Update</button>
 
 
 <script src="js/jquery-3.4.1.min.js"></script>

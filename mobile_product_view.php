@@ -125,24 +125,29 @@ $mobileResult = $crud->getData($mobileQuery);
 				<div class="row">
 					<div class="col">
 						<div class="product-view mt-4">							
-							<ul style="width:100%;height:315px">
+							<ul style="width:1000%;height:315px">
 							<?php 
 								 foreach($mobileResult as $key=>$res){	 
-									echo "<li style='list-style:none;display:block;width:204px;float:left;margin-right:10px'>";
+									echo "<li style='list-style:none;display:block;width:185px;float:left;margin-right:100px'>";
 									echo "<div style='height:315px'>";
 								    echo "<div style='height:217px;margin-bottom:10px'>";
 								    echo "<td><img width='100%' src='".$res['product_image']."'/></td>";
 								    echo "</div>";
 								    echo "<a href='product_full_view.php?id=".$res['id']."'>";
 								    echo "<div style='height:63px;overflow:hidden;margin-bottom:5px'>"; 
-									echo "<p style='color:black;text-align:center;margin-top:-3px'>".$res['product_name']."</p>";
+									echo "<p style='color:black;text-align:center;margin-top:-3px;font-size:14px'>".$res['product_name']."</p>";
 									echo "</div>";
 									echo "</a>";
 									echo "<div style='height:30px'>";
-									echo "<p style='color:red;text-align:center'>BDT.  ".$res['product_price']."</p>";
+									echo "<div class='float-left'>";
+									echo "<p style='color:red;text-align:center;font-size:14px'>BDT.  ".$res['product_price']."</p>";
+									echo "</div>";
+									 
+									echo "<button id=".$res['id']."  class='float-right prdt_cart_btn btn btn-sm btn-light' style='margin-left: 5px;margin-top: -1px;padding: 0px 4px;font-size: 13px;font-weight: bold'>Add to Cart</button>";
+									 
 									echo "</div>";
 									echo "</div>";
-									echo "</li>";	 
+									echo "</li>";		 
 								}
 							?>
 							</ul>
@@ -191,9 +196,9 @@ $mobileResult = $crud->getData($mobileQuery);
 					<div class="col-4">
 						<div class="devhire">
 							<h5 style="color: white">Hire Web Developer</h5>
-							<p style="color: #ddd">Saiful Islam</p><br>
-							<span style="color: #ddd">+8801782455150</span><br>
-							<span style="color: #ddd">mdshihab856@gmail.com</span>
+							<p style="color: #ddd">Name goes here</p><br>
+							<span style="color: #ddd">Number</span><br>
+							<span style="color: #ddd">address</span>
 						</div>
 					</div>
 				</div>	
@@ -224,7 +229,7 @@ $mobileResult = $crud->getData($mobileQuery);
 				</div>
 			 </div>
 			 <div class="copyright text-center pt-2 ">
-			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank">sites.google.com/diu.edu.bd/saifulshihab</a></p>
+			 	<p>Copyright 2019 &copy; All Rights Reserved By <a href="https://www.sites.google.com/diu.edu.bd/saifulshihab" target="_blank"></a></p>
 			 </div>
 			 </div>
 			 
@@ -238,9 +243,20 @@ $mobileResult = $crud->getData($mobileQuery);
 
  	<script type="text/Javascript">
  		$(document).ready(function(){
-	 			$('.carousel').carousel({
-	 			interval: 3000 
-	 		})
+	//add cart
+ 				$('.prdt_cart_btn').click(function(){
+ 				var id = $(this).attr('id');
+ 				$.ajax({
+ 					url:"customer_cart.php",
+ 					type:"POST",
+ 					data:{id:id},
+ 					success:function(data){
+ 						 if(data=="success"){
+ 						 	alert("Added to Cart Successfully.");
+ 						 } 					
+ 					}
+ 				})
+ 			})
 
 	 		$("[data-toggle='tooltip']").tooltip();
  		})	

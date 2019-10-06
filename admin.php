@@ -105,14 +105,30 @@
 
 					<!--Product List-->
 	 				<section id="product_list" class="content-section-section mb-5">
-	 					<h3 id="content-header">Product List</h3>
-	 					
+	 				
+	 					<h3 id="content-header-2">All Products</h3>
 	 					<!--Show all Product List-->
-						<div id="product-list-show"></div> 
 						
+							<div class="row">
+								<div class="col-8">
+
+								<div class="showbox">
+									<div id="product-list-show">
+								</div>
+								</div>
+								</div>
+								<div class="col-4">
+									
+									<div class="editbox">
+									<div id="product-edit-form" class=""></div>
+									</div>
+								</div>
+							</div>
+					 
+						</section>
 						<!--Product add form-->	
 						<div class="pt-5 content-section-section" id="product-add-form" style="padding-top:200px !important;">
-							<h3 id="content-header">Add Product</h3>
+							<h3 id="content-header" class="mt-5">Add Product</h3>
 								<form action="admin-dashboard.php" method="POST" enctype="multipart/form-data">
 		 					<div class="form-group">
 		 						<label for=""><strong>Product Name</strong></label>
@@ -163,13 +179,9 @@
 		 					 
 		 					<button style="margin-right: 5px" class="btn btn-success float-right" type="button" name="save" id="save"><i class="fas fa-save mr-2"></i>Save</button>
 		 				</form>
-						</div>
+						</div>					
 
-					<div id="product-edit-form" class="mt-5"></div>
-
-
-
-	 				</section>
+	 				
 				
 					<div class="clearfix"></div>
 
