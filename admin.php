@@ -129,7 +129,7 @@
 						<!--Product add form-->	
 						<div class="pt-5 content-section-section" id="product-add-form" style="padding-top:200px !important;">
 							<h3 id="content-header" class="mt-5">Add Product</h3>
-								<form action="admin-dashboard.php" method="POST" enctype="multipart/form-data">
+								<form action="admin.php" method="POST" enctype="multipart/form-data">
 		 					<div class="form-group">
 		 						<label for=""><strong>Product Name</strong></label>
 		 						<input type="text" class="form-control" name="product_name" id="product_name" required>
